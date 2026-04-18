@@ -80,7 +80,8 @@ SOURCE_FUNCTIONS="export PATH=\"${SCRIPT_DIR}/bin:${SCRIPT_DIR}/tools:\$PATH\"
 source \"${SCRIPT_DIR}/ghee-functions.sh\"
 for _gg_mod in \"${SCRIPT_DIR}/modules\"/*.sh; do
     source \"\$_gg_mod\"
-done"
+done
+_ghee_check_conflicts"
 
 # ============================================================================
 # Uninstall mode
@@ -279,6 +280,13 @@ func_count=$(cat "${SCRIPT_DIR}/modules"/*.sh 2>/dev/null | grep -c '^[a-zA-Z_-]
 gfunc_count=0
 total=$((alias_count + func_count + gfunc_count))
 
+# Install pre-commit hook for alias conflict detection
+if [ -d "${SCRIPT_DIR}/.git" ] && [ -f "${SCRIPT_DIR}/hooks/pre-commit" ]; then
+    cp "${SCRIPT_DIR}/hooks/pre-commit" "${SCRIPT_DIR}/.git/hooks/pre-commit"
+    chmod +x "${SCRIPT_DIR}/.git/hooks/pre-commit"
+    print_ok "Installed pre-commit hook (alias conflict detection)"
+fi
+
 echo ""
 echo -e "${_bold}${_green}  Installation complete!${_reset}"
 echo -e "${_dim}  ────────────────────────────────────────${_reset}"
@@ -293,14 +301,14 @@ echo ""
 echo -e "    ${_green}1.${_reset} Reload your shell:"
 echo -e "       ${_dim}source ${RC_FILE}${_reset}"
 echo ""
-echo -e "    ${_green}2.${_reset} Try the g command:"
-echo -e "       ${_dim}g 'git status'${_reset}          # best-guess a shortcut"
+echo -e "    ${_green}2.${_reset} Try the G command:"
+echo -e "       ${_dim}G 'git status'${_reset}          # best-guess a shortcut"
 echo -e "       ${_dim}G${_reset}                       # interactive fuzzy finder"
-echo -e "       ${_dim}g -a 'mycmd' 'desc'${_reset}     # add your own shortcut"
+echo -e "       ${_dim}G -a olist 'ollama list'${_reset} # add your own shortcut"
 echo ""
 echo -e "    ${_green}3.${_reset} See all commands:"
-echo -e "       ${_dim}gg-help${_reset}                 # full reference table"
-echo -e "       ${_dim}gg-help docker${_reset}           # filter by section"
+echo -e "       ${_dim}gheelp${_reset}                 # full reference table"
+echo -e "       ${_dim}gheelp docker${_reset}           # filter by section"
 echo ""
 echo -e "  ${_dim}To uninstall: ./setup-ghee --remove${_reset}"
 echo ""

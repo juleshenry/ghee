@@ -1,5 +1,7 @@
 # 🧈 ghee
 
+![ghee](ghee.png)
+
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Shell](https://img.shields.io/badge/shell-bash%20%7C%20zsh-yellow)
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
@@ -10,9 +12,9 @@
 🇪🇸 [Español](README.es.md) · 🇨🇳 [中文](README.zh.md) · 🇮🇳 [हिन्दी](README.hi.md) · 🇰🇷 [한국어](README.ko.md) · 🇸🇦 [العربية](README.ar.md)
 <!-- 🌐 Translations cover descriptions; aliases & commands stay in English for consistency. -->
 
-**ghee** is a collection of **538+ shell shortcuts** for developers, devops engineers, and power users. It layers smoothly on top of your existing shell, making your CLI crispy and fast — just like the real thing.
+**ghee** is a collection of **616+ shell shortcuts** for developers, devops engineers, and power users. It layers smoothly on top of your existing shell, making your CLI crispy and fast — just like the real thing.
 
-Covers: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Railway, GitHub CLI, npm/yarn/pnpm, Python/pip, Rust, Go, Redis, PostgreSQL, MongoDB, Nginx, systemd, tmux, networking, cybersecurity/recon, AI/LLM tools, media (ffmpeg/yt-dlp), JSON/YAML/CSV, macOS power tools, and more.
+Covers: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Railway, GitHub CLI, npm/yarn/pnpm, Python/pip/uv/ruff/poetry, Rust, Go, Java/Maven/Gradle, Homebrew, SSH/SCP, Redis, PostgreSQL, MongoDB, Nginx, systemd, tmux, networking, cybersecurity/recon, AI/LLM tools, media (ffmpeg/yt-dlp), JSON/YAML/CSV, macOS power tools, and more.
 
 ---
 
@@ -21,11 +23,12 @@ Covers: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Ra
 - [✨ Features](#-features)
 - [✅ Prerequisites](#-prerequisites)
 - [🚀 Installation](#-installation)
-- [🎮 Using the g Command](#-using-the-g-command)
+- [🎮 Using the G Command](#-using-the-g-command)
 - [📦 Project Structure](#-project-structure)
 - [📖 Command Reference](#-command-reference)
 - [🛠️ Adding Custom Shortcuts](#️-adding-custom-shortcuts)
 - [🤝 Contributing](#-contributing)
+- [🍴 Forking & Personalizing](#-forking--personalizing)
 - [🎨 Why "ghee"?](#-why-ghee)
 - [📄 License](#-license)
 
@@ -33,10 +36,13 @@ Covers: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Ra
 
 ## ✨ Features
 
-- 🔍 **`g`** — Interactive Python TUI to fuzzy-search all 538+ commands with live preview
-- ⚡ **`g 'docker logs'`** — Best-guess any shell command, copies match to clipboard
-- ➕ **`g -a 'mycmd' 'desc'`** — Add your own custom shortcut, persists to `~/.ghee-custom`
-- 📦 **Modular** — 29 topic-based modules, auto-sourced into your shell
+- 🔍 **`G`** — Interactive Python TUI to fuzzy-search all 616+ commands with live preview
+- ⚡ **`G 'docker logs'`** — Best-guess any shell command, copies match to clipboard
+- ➕ **`G -a olist 'ollama list'`** — Add your own custom shortcut, instantly available
+- ➖ **`G -rm olist`** — Remove a custom shortcut
+- 📋 **`G ls`** — List all your custom shortcuts
+- 🔄 **`G update`** — Self-update ghee via git pull
+- 📦 **Modular** — 32 topic-based modules, auto-sourced into your shell
 - 🐍 **Python-powered** — Beautiful Rich TUI with fuzzy matching and color formatting
 - 🔌 **Plug-and-play** — `./setup-ghee` sets everything up in under 30 seconds
 
@@ -80,7 +86,7 @@ done
 - Detects your shell (bash or zsh) and backs up your RC file
 - Creates a Python virtualenv (`ghee-venv`) with `rich` for the interactive TUI
 - Exports `bin/` and `tools/` to your `$PATH`
-- Sources all 29 modules from `modules/*.sh` into your shell
+- Sources all 32 modules from `modules/*.sh` into your shell
 
 ### Uninstall
 
@@ -90,12 +96,19 @@ done
 
 ---
 
-## 🎮 Using the g Command
+## 🎮 Using the G Command
 
 ```bash
-g                            # Interactive fuzzy finder — search all 538+ commands
-g 'docker logs'              # Best-guess, copies best match to clipboard
-g -a 'npm run dev' 'Start dev server'  # Add a custom shortcut (persists)
+G                            # Interactive fuzzy finder — search all 616+ commands
+G 'docker logs'              # Best-guess, copies best match to clipboard
+G -a olist 'ollama list'     # Add a custom shortcut (works instantly)
+G -rm olist                  # Remove a custom shortcut
+G ls                         # List all custom shortcuts
+G -o 'find large files'     # Ask Ollama AI to generate a command
+G info docker                # Show all aliases for a specific module
+G update                     # Self-update ghee via git pull
+G --sync <gist_url>          # Sync custom shortcuts from a GitHub Gist
+G --help                     # Show help and module list
 ```
 
 In interactive mode: **arrows** to navigate · **Enter** to select · **Tab** to copy · **Esc** to quit.
@@ -107,9 +120,9 @@ In interactive mode: **arrows** to navigate · **Enter** to select · **Tab** to
 ```
 ghee/
 ├── setup-ghee              # Installer / uninstaller
-├── ghee-functions.sh       # Core init: colors, g() wrapper, registry declaration
+├── ghee-functions.sh       # Core init: colors, G() wrapper, registry declaration
 ├── ghee.py                 # Python TUI (rich-powered fuzzy search CLI)
-├── modules/                # 29 bash modules, auto-sourced on shell start
+├── modules/                # 32 bash modules, auto-sourced on shell start
 │   ├── git_workflow.sh       # Advanced git functions (gwip, presto, gtag...)
 │   ├── git_aliases.sh        # 90+ standard git aliases (gs, gco, glog...)
 │   ├── docker.sh             # Docker & Compose
@@ -120,8 +133,11 @@ ghee/
 │   ├── cloud_deploy.sh       # Heroku, Vercel, Fly.io, Railway
 │   ├── github_cli.sh         # gh CLI (PRs, issues, releases)
 │   ├── npm_yarn_pnpm.sh      # JS package managers
-│   ├── python_pip_venv.sh    # Python / pip / venv / pytest
+│   ├── python_pip_venv.sh    # Python / pip / venv / uv / ruff / poetry
 │   ├── rust_go.sh            # Cargo + Go tools
+│   ├── java_jvm.sh           # Java / Maven / Gradle
+│   ├── homebrew.sh           # Homebrew (macOS package manager)
+│   ├── ssh_scp.sh            # SSH tunnels, keys, SCP
 │   ├── redis.sh              # Redis CLI
 │   ├── postgresql.sh         # psql shortcuts
 │   ├── mongodb.sh            # MongoDB CLI
@@ -182,7 +198,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | Deploy to Vercel production |
 | `vdev` | `vercel dev` | Start local Vercel dev server |
-| `venv` | `vercel env pull .env.local` | Pull Vercel environment variables to local |
+| `venvpull` | `vercel env pull .env.local` | Pull Vercel environment variables to local |
 | `hdeploy` | `git push heroku main` | Deploy to Heroku via git |
 | `hlogs` | `heroku logs --tail` | Tail Heroku app logs |
 | `hbash` | `heroku run bash` | Open bash shell on Heroku dyno |
@@ -462,6 +478,52 @@ ghee/
 | `ghclone` | `gh repo clone OWNER/REPO` | Clone repo using gh (auto SSH) |
 | `ghfork` | `gh repo fork --clone` | Fork and clone a GitHub repo |
 
+### Homebrew
+
+| Alias | Runs | Description |
+|-------|------|-------------|
+| `brewi` | `brew install PACKAGE` | Install a Homebrew package |
+| `brewic` | `brew install --cask APP` | Install a Homebrew cask (GUI app) |
+| `brewu` | `brew upgrade` | Upgrade all Homebrew packages |
+| `brewup` | `brew upgrade PACKAGE` | Upgrade a specific package |
+| `brewun` | `brew uninstall PACKAGE` | Uninstall a Homebrew package |
+| `brewls` | `brew list` | List installed Homebrew packages |
+| `brewlsc` | `brew list --cask` | List installed casks |
+| `brews` | `brew search TERM` | Search Homebrew packages |
+| `brewinfo` | `brew info PACKAGE` | Show info about a package |
+| `brewout` | `brew outdated` | List outdated packages |
+| `brewdr` | `brew doctor` | Check Homebrew for issues |
+| `brewcl` | `brew cleanup` | Remove old versions and cache |
+| `brewpin` | `brew pin PACKAGE` | Pin a package to prevent upgrades |
+| `brewupin` | `brew unpin PACKAGE` | Unpin a package |
+| `brewsv` | `brew services list` | List all Homebrew services |
+| `brewstart` | `brew services start SERVICE` | Start a Homebrew service |
+| `brewstop` | `brew services stop SERVICE` | Stop a Homebrew service |
+| `brewre` | `brew services restart SERVICE` | Restart a Homebrew service |
+| `brewdeps` | `brew deps --tree PACKAGE` | Show dependency tree for a package |
+| `brewsize` | `brew info PACKAGE \| grep -i 'installed'` | Show installed size of a package |
+| `brewup-all` | `brew update && upgrade && cleanup` | Update, upgrade, and clean up everything |
+
+### Java Jvm
+
+| Alias | Runs | Description |
+|-------|------|-------------|
+| `jver` | `java -version` | Show Java version |
+| `jcc` | `javac FILE.java` | Compile Java source file |
+| `jrun` | `java CLASS` | Run compiled Java class |
+| `mci` | `mvn clean install` | Maven clean install |
+| `mcp` | `mvn clean package` | Maven clean package |
+| `mt` | `mvn test` | Maven run tests |
+| `mcl` | `mvn clean` | Maven clean |
+| `mdeps` | `mvn dependency:tree` | Maven dependency tree |
+| `mspring` | `mvn spring-boot:run` | Maven Spring Boot run |
+| `grb` | `gradle build` | Gradle build |
+| `grcl` | `gradle clean` | Gradle clean |
+| `grt` | `gradle test` | Gradle run tests |
+| `grrun` | `gradle run` | Gradle run application |
+| `grdeps` | `gradle dependencies` | Gradle dependency tree |
+| `grspring` | `gradle bootRun` | Gradle Spring Boot run |
+
 ### Kubernetes
 
 | Alias | Runs | Description |
@@ -527,8 +589,8 @@ ghee/
 
 | Alias | Runs | Description |
 |-------|------|-------------|
-| `g` | `g [cmd] or g -a 'cmd' 'desc'` | Ghee hot-doc shell |
-| `gg-help` | `print reference table` | Full command reference |
+| `G` | `G [cmd] or G -a <alias> <cmd>` | Ghee hot-doc shell |
+| `gheelp` | `print reference table` | Full command reference |
 | `gupdate` | `git pull && ./setup-ghee` | Auto-update ghee to latest version |
 
 ### Misc Cli Tools
@@ -548,11 +610,7 @@ ghee/
 | `erc` | `\${EDITOR:-vi} ~/.<shell>rc` | Edit shell RC file |
 | `path` | `echo \$PATH \| tr : newline` | Show PATH (one per line) |
 | `cx` | `chmod +x FILE` | Make file executable |
-| `epoch` | `date +%s` | Print Unix timestamp |
 | `isodate` | `date -u +%Y-%m-%dT%H:%M:%SZ` | Print ISO 8601 timestamp |
-| `uuid` | `python3 uuid4` | Generate a UUID |
-| `b64e` | `base64 FILE` | Base64 encode |
-| `b64d` | `base64 --decode` | Base64 decode |
 | `sha256` | `shasum -a 256 FILE` | SHA256 hash of file |
 | `md5sum` | `md5 FILE` | MD5 hash of file |
 
@@ -766,6 +824,25 @@ ghee/
 | `countext` | `find . -type f \| sed/sort/uniq` | Count files by extension |
 | `findlarge` | `find . -type f -size +N` | Find files larger than N |
 
+### Ssh Scp
+
+| Alias | Runs | Description |
+|-------|------|-------------|
+| `sshtun` | `ssh -L LOCAL_PORT:localhost:REMOTE_PORT USER@HOST` | SSH local port forwarding tunnel |
+| `sshrtun` | `ssh -R REMOTE_PORT:localhost:LOCAL_PORT USER@HOST` | SSH reverse tunnel |
+| `sshcopy` | `ssh-copy-id USER@HOST` | Copy SSH key to remote host |
+| `sshv` | `ssh -vvv USER@HOST` | SSH with verbose output |
+| `sshedit` | `${EDITOR:-vim} ~/.ssh/config` | Edit SSH config |
+| `sshkeygen` | `ssh-keygen -t ed25519 -C EMAIL` | Generate ed25519 SSH key |
+| `sshadd` | `ssh-add ~/.ssh/id_ed25519` | Add SSH key to agent |
+| `sshls` | `ssh-add -l` | List keys loaded in SSH agent |
+| `sshjump` | `ssh -J JUMP_HOST USER@DEST_HOST` | SSH via jump host / proxy |
+| `sshtest` | `ssh -o ConnectTimeout=5 -q USER@HOST exit` | Test SSH connection |
+| `scpto` | `scp FILE USER@HOST:REMOTE_PATH` | SCP file to remote |
+| `scpfrom` | `scp USER@HOST:REMOTE_FILE LOCAL_PATH` | SCP file from remote |
+| `scptor` | `scp -r DIR USER@HOST:REMOTE_PATH` | SCP directory to remote (recursive) |
+| `scpfromr` | `scp -r USER@HOST:REMOTE_DIR LOCAL_PATH` | SCP directory from remote (recursive) |
+
 ### Super Utilities
 
 | Alias | Runs | Description |
@@ -833,13 +910,18 @@ ghee/
 ## 🛠️ Adding Custom Shortcuts
 
 ```bash
-# Add any command permanently
-g -a 'python manage.py runserver' 'Start Django dev server'
+# Add a custom shortcut — alias first, then the command
+G -a olist 'ollama list'        # Now 'olist' works instantly in your shell
 
-# Saved to ~/.ghee-custom — shows up in g search immediately
+# Remove a custom shortcut
+G -rm olist                     # Removes alias immediately
+
+# Saved to ~/.ghee-custom — shows up in G search immediately
 # Edit ~/.ghee-custom directly for bulk additions:
-# alias_name|||the actual command|||description of what it does
+# alias_name|||the actual command|||description
 ```
+
+Custom aliases are **live instantly** — no need to restart your shell.
 
 ---
 
@@ -852,6 +934,55 @@ Contributions are welcome! If you want to add new commands or modules, please fo
 3. Make sure you use the standard structure for your aliases and keep descriptions clear and concise.
 4. **Test** the installer script (`./setup-ghee`) locally to ensure your changes don't break existing setups.
 5. Submit a **Pull Request**.
+
+---
+
+## 🍴 Forking & Personalizing
+
+ghee is designed to be forked. The best way to use it long-term is to maintain your own fork with your personal shortcuts, then sync upstream improvements when they land.
+
+### Quick Fork Setup
+
+```bash
+# 1. Fork on GitHub, then clone your fork
+gh repo fork juleshenry/ghee --clone
+cd ghee
+
+# 2. Install
+chmod +x setup-ghee && ./setup-ghee
+source ~/.zshrc
+
+# 3. Add your own shortcuts
+G -a myalias 'my-custom-command'
+
+# 4. Or add a whole new module
+cat > modules/my_team.sh << 'EOF'
+#!/bin/bash
+# ============================================================================
+# Module: My Team
+# Description: Custom shortcuts for my team's workflow.
+# ============================================================================
+_GG_REGISTRY["deploy-staging"]="./scripts/deploy.sh staging|||Deploy to staging"
+_GG_REGISTRY["db-migrate"]="rails db:migrate|||Run database migrations"
+EOF
+chmod +x modules/my_team.sh
+```
+
+### Syncing Upstream Changes
+
+```bash
+# Add upstream remote (one-time)
+git remote add upstream https://github.com/juleshenry/ghee.git
+
+# Pull latest from upstream
+git fetch upstream
+git merge upstream/main
+
+# Resolve any conflicts in your custom modules, then:
+./setup-ghee && source ~/.zshrc
+```
+
+Your custom shortcuts in `~/.ghee-custom` are always safe — they live outside the repo and survive any update or reinstall.
 
 ---
 

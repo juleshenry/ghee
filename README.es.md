@@ -17,7 +17,7 @@ Cubre: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Rai
 - [✨ Características](#-características)
 - [✅ Requisitos Previos](#-requisitos-previos)
 - [🚀 Instalación](#-instalación)
-- [🎮 Usando el Comando g](#-usando-el-comando-g)
+- [🎮 Usando el Comando G](#-usando-el-comando-g)
 - [📦 Estructura del Proyecto](#-estructura-del-proyecto)
 - [📖 Referencia de Comandos](#-referencia-de-comandos)
 - [🛠️ Agregando Atajos Personalizados](#️-agregando-atajos-personalizados)
@@ -29,9 +29,10 @@ Cubre: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Rai
 
 ## ✨ Características
 
-- 🔍 **`g`** — TUI interactiva en Python para búsqueda difusa de los 538+ comandos con vista previa en vivo
-- ⚡ **`g 'docker logs'`** — Mejor suposición de cualquier comando de shell, copia coincidencias al portapapeles
-- ➕ **`g -a 'mycmd' 'desc'`** — Agrega tu propio atajo personalizado, persiste en `~/.ghee-custom`
+- 🔍 **`G`** — TUI interactiva en Python para búsqueda difusa de los 538+ comandos con vista previa en vivo
+- ⚡ **`G 'docker logs'`** — Mejor suposición de cualquier comando de shell, copia coincidencias al portapapeles
+- ➕ **`G -a <alias> <command>`** — Agrega tu propio atajo personalizado, persiste en `~/.ghee-custom`
+- ➖ **`G -rm <alias>`** — Elimina un atajo personalizado
 - 📦 **Modular** — 29 módulos basados en temas, auto-cargados en tu shell
 - 🐍 **Impulsado por Python** — Hermosa TUI con Rich, coincidencia difusa y formato a color
 - 🔌 **Plug-and-play** — `./setup-ghee` configura todo en menos de 30 segundos
@@ -86,12 +87,13 @@ done
 
 ---
 
-## 🎮 Usando el Comando g
+## 🎮 Usando el Comando G
 
 ```bash
-g                            # Buscador difuso interactivo — busca los 538+ comandos
-g 'docker logs'              # Mejor suposición, copia la mejor coincidencia al portapapeles
-g -a 'npm run dev' 'Iniciar servidor de desarrollo'  # Agrega un atajo personalizado (persiste)
+G                            # Buscador difuso interactivo — busca los 538+ comandos
+G 'docker logs'              # Mejor suposición, copia la mejor coincidencia al portapapeles
+G -a 'npm run dev' 'Iniciar servidor de desarrollo'  # Agrega un atajo personalizado (persiste)
+G -rm myalias                # Elimina un atajo personalizado
 ```
 
 En modo interactivo: **flechas** para navegar · **Enter** para seleccionar · **Tab** para copiar · **Esc** para salir.
@@ -103,7 +105,7 @@ En modo interactivo: **flechas** para navegar · **Enter** para seleccionar · *
 ```
 ghee/
 ├── setup-ghee              # Instalador / desinstalador
-├── ghee-functions.sh       # Núcleo: colores, envoltorio g(), declaración de registro
+├── ghee-functions.sh       # Núcleo: colores, envoltorio G(), declaración de registro
 ├── ghee.py                 # TUI Python (CLI de búsqueda difusa con Rich)
 ├── modules/                # 29 módulos bash, auto-cargados al iniciar shell
 │   ├── git_workflow.sh       # Funciones git avanzadas (gwip, presto, gtag...)

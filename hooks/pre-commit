@@ -1,0 +1,28 @@
+#!/bin/bash
+# pre-commit hook: detect duplicate _GG_REGISTRY keys across all modules
+# Install: cp hooks/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+
+MODULES_DIR="$(git rev-parse --show-toplevel)/modules"
+
+if [ ! -d "$MODULES_DIR" ]; then
+    exit 0
+fi
+
+# Extract all registry keys with their source files
+dupes=$(grep -roh '_GG_REGISTRY\["[^"]*"\]' "$MODULES_DIR"/*.sh 2>/dev/null \
+    | sed 's/_GG_REGISTRY\["\(.*\)"\]/\1/' \
+    | sort | uniq -d)
+
+if [ -n "$dupes" ]; then
+    echo "ERROR: Duplicate _GG_REGISTRY keys found:"
+    echo ""
+    for key in $dupes; do
+        echo "  '$key' defined in:"
+        grep -rl "_GG_REGISTRY\[\"$key\"\]" "$MODULES_DIR"/*.sh | sed 's/^/    /'
+    done
+    echo ""
+    echo "Fix the duplicates before committing."
+    exit 1
+fi
+
+exit 0

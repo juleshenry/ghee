@@ -49,6 +49,24 @@ _ghee_load_custom_aliases() {
 
 _ghee_load_custom_aliases
 
+# Detect alias conflicts across modules (call after all modules are sourced)
+_ghee_check_conflicts() {
+    local mod_dir="${_GHEE_DIR}/modules"
+    [ -d "$mod_dir" ] || return
+    declare -A _seen
+    local key mod
+    for mod in "$mod_dir"/*.sh; do
+        local modname="$(basename "$mod" .sh)"
+        while IFS= read -r key; do
+            [ -z "$key" ] && continue
+            if [ -n "${_seen[$key]+x}" ]; then
+                _gg_warn "Alias conflict: '${key}' defined in ${_seen[$key]} and ${modname}"
+            fi
+            _seen["$key"]="$modname"
+        done < <(grep -o '_GG_REGISTRY\["[^"]*"\]' "$mod" 2>/dev/null | sed 's/_GG_REGISTRY\["//;s/"\]//')
+    done
+}
+
 if [ -n "$ZSH_VERSION" ]; then
     export _GHEE_DIR="$(dirname "${(%):-%x}")"
 elif [ -n "$BASH_VERSION" ]; then
@@ -77,3 +95,24 @@ g() {
         unalias "$2" 2>/dev/null
     fi
 }
+
+# ============================================================================
+# TAB COMPLETION
+# ============================================================================
+
+if [ -n "$ZSH_VERSION" ]; then
+    _ghee_completions() {
+        local -a subcmds
+        subcmds=('-a:Add a custom shortcut' '-rm:Remove a custom shortcut' 'ls:List custom shortcuts' '-o:Ask Ollama AI' '--sync:Sync from Gist' 'info:Show module aliases' 'update:Self-update ghee' '--help:Show help')
+        _describe 'G commands' subcmds
+    }
+    compdef _ghee_completions G
+    compdef _ghee_completions g
+elif [ -n "$BASH_VERSION" ]; then
+    _ghee_completions() {
+        local cur="${COMP_WORDS[COMP_CWORD]}"
+        COMPREPLY=($(compgen -W "-a -rm ls -o --sync info update --help" -- "$cur"))
+    }
+    complete -F _ghee_completions G
+    complete -F _ghee_completions g
+fi

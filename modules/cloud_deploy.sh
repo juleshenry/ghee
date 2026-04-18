@@ -8,7 +8,7 @@
 
 _GG_REGISTRY["vdeploy"]="vercel --prod ||| Deploy to Vercel production"
 _GG_REGISTRY["vdev"]="vercel dev ||| Start local Vercel dev server"
-_GG_REGISTRY["venv"]="vercel env pull .env.local ||| Pull Vercel environment variables to local"
+_GG_REGISTRY["venvpull"]="vercel env pull .env.local ||| Pull Vercel environment variables to local"
 _GG_REGISTRY["hdeploy"]="git push heroku main ||| Deploy to Heroku via git"
 _GG_REGISTRY["hlogs"]="heroku logs --tail ||| Tail Heroku app logs"
 _GG_REGISTRY["hbash"]="heroku run bash ||| Open bash shell on Heroku dyno"

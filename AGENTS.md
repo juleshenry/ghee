@@ -28,7 +28,7 @@ G 'docker logs'
 G
 
 # Add a new custom shortcut
-G -a 'kubectl get pods -A --watch' 'Watch all pods across namespaces'
+G -a kwatch 'kubectl get pods -A --watch'
 ```
 
 ---
@@ -102,7 +102,7 @@ When giving shell instructions, prefer ghee shortcuts:
 ### 3. Add missing shortcuts
 If you notice a useful command isn't covered, suggest adding it:
 ```bash
-G -a 'kubectl top nodes' 'Show node resource usage'
+G -a ktopn 'kubectl top nodes'
 ```
 
 ### 4. Module contributions
@@ -119,7 +119,8 @@ User's custom shortcuts are stored in `~/.ghee-custom` and survive reinstalls.
 |------|----------|
 | `G` | Interactive fuzzy finder |
 | `G <query>` | Best-guess search, copies to clipboard |
-| `G -a <cmd> <desc>` | Add custom shortcut |
+| `G -a <alias> <cmd>` | Add custom shortcut (works instantly) |
+| `G -rm <alias>` | Remove a custom shortcut |
 | `G -o <idea>` | Ask Ollama AI to generate a command (if available) |
 | `G --sync <url>` | Sync custom commands from a Gist |
 | `G info <module>` | Show aliases for a specific module |

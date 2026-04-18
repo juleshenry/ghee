@@ -60,3 +60,16 @@ openai_ask() {
         -d "{\"model\":\"$model\",\"messages\":[{\"role\":\"user\",\"content\":\"$1\"}]}" \
         | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['choices'][0]['message']['content'])"
 }
+
+# Ollama model management
+_GG_REGISTRY["ollmrm"]="ollama rm MODEL ||| Remove an Ollama model"
+_GG_REGISTRY["ollmcp"]="ollama cp SRC DEST ||| Copy/clone an Ollama model"
+_GG_REGISTRY["ollmps"]="ollama ps ||| Show running Ollama models"
+_GG_REGISTRY["ollmcr"]="ollama create MODEL -f Modelfile ||| Create custom Ollama model"
+_GG_REGISTRY["ollmshow"]="ollama show MODEL ||| Show model details/parameters"
+
+alias ollmrm='ollama rm'
+alias ollmcp='ollama cp'
+alias ollmps='ollama ps'
+alias ollmcr='ollama create'
+alias ollmshow='ollama show'

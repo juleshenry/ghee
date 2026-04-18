@@ -315,6 +315,61 @@ def remove_custom(alias: str) -> None:
         except IOError:
             pass
 
+def list_custom() -> None:
+    """List all custom shortcuts."""
+    if not CUSTOM_FILE.exists() or not CUSTOM_FILE.read_text().strip():
+        print_info("No custom shortcuts. Add one with: G -a <alias> <command>")
+        return
+
+    lines = CUSTOM_FILE.read_text().splitlines()
+    if RICH_AVAILABLE:
+        table = Table(box=box.SIMPLE_HEAD, show_header=True, title="Custom Shortcuts")
+        table.add_column("Alias", style="bold green")
+        table.add_column("Command", style="cyan")
+        for line in lines:
+            if not line.strip() or "|||" not in line:
+                continue
+            parts = line.split("|||")
+            alias = parts[0].strip()
+            cmd = parts[1].strip() if len(parts) > 1 else ""
+            table.add_row(alias, cmd)
+        console.print(table)
+    else:
+        print("Custom Shortcuts:")
+        for line in lines:
+            if not line.strip() or "|||" not in line:
+                continue
+            parts = line.split("|||")
+            alias = parts[0].strip()
+            cmd = parts[1].strip() if len(parts) > 1 else ""
+            print(f"  {alias:<16} {cmd}")
+
+def run_update() -> None:
+    """Self-update ghee via git pull and re-run setup."""
+    script_dir = Path(__file__).parent.absolute()
+    print_info("Updating ghee...")
+    try:
+        result = subprocess.run(
+            ["git", "pull", "--rebase"],
+            cwd=str(script_dir),
+            capture_output=True, text=True, timeout=30
+        )
+        if result.returncode == 0:
+            print_ok(f"Git: {result.stdout.strip()}")
+        else:
+            print_err(f"Git pull failed: {result.stderr.strip()}")
+            return
+
+        setup = script_dir / "setup-ghee"
+        if setup.exists():
+            print_info("Running setup-ghee...")
+            subprocess.run([str(setup)], cwd=str(script_dir), timeout=60)
+        print_ok("Update complete. Reload your shell: source ~/.zshrc")
+    except subprocess.TimeoutExpired:
+        print_err("Update timed out.")
+    except Exception as e:
+        print_err(f"Update failed: {e}")
+
 def score_match(query: str, key: str, cmd: str, desc: str) -> int:
     """
     Score the match of a query against a command alias, actual command, and description.
@@ -674,7 +729,7 @@ def sync_custom(gist_url=None):
         if sync_file.exists():
             gist_url = json.loads(sync_file.read_text()).get("gist_url")
         if not gist_url:
-            print_err("No Gist URL provided or saved. Usage: g --sync <gist_url>")
+            print_err("No Gist URL provided or saved. Usage: G --sync <gist_url>")
             return
             
     import urllib.request
@@ -730,13 +785,16 @@ def show_help():
     if RICH_AVAILABLE:
         console.print(Panel("[bold magenta]Ghee[/bold magenta] - Shell Shortcut Manager", expand=False, box=box.ROUNDED))
         console.print("\n[bold]Usage:[/bold]")
-        console.print("  [cyan]g[/cyan]                  Interactive fuzzy search")
-        console.print("  [cyan]g <query>[/cyan]          Fuzzy search for a specific command")
-        console.print("  [cyan]g -a <cmd> <desc>[/cyan]  Add a custom command")
-        console.print("  [cyan]g -o <idea>[/cyan]         Ask Ollama AI to generate a command")
-        console.print("  [cyan]g --sync <url>[/cyan]     Sync custom commands from a Gist")
-        console.print("  [cyan]g info <module>[/cyan]    Show aliases for a specific module")
-        console.print("  [cyan]g --help[/cyan]           Show this help message")
+        console.print("  [cyan]G[/cyan]                  Interactive fuzzy search")
+        console.print("  [cyan]G <query>[/cyan]          Fuzzy search for a specific command")
+        console.print("  [cyan]G -a <alias> <cmd>[/cyan] Add a custom shortcut (works instantly)")
+        console.print("  [cyan]G -rm <alias>[/cyan]      Remove a custom shortcut")
+        console.print("  [cyan]G ls[/cyan]               List all custom shortcuts")
+        console.print("  [cyan]G -o <idea>[/cyan]         Ask Ollama AI to generate a command")
+        console.print("  [cyan]G --sync <url>[/cyan]     Sync custom commands from a Gist")
+        console.print("  [cyan]G info <module>[/cyan]    Show aliases for a specific module")
+        console.print("  [cyan]G update[/cyan]           Self-update ghee via git pull")
+        console.print("  [cyan]G --help[/cyan]           Show this help message")
         
         console.print("\n[bold]Available Modules:[/bold]")
         table = Table(box=box.SIMPLE_HEAD, show_header=True)
@@ -750,7 +808,7 @@ def show_help():
         console.print(table)
     else:
         print("Ghee - Shell Shortcut Manager")
-        print("Usage: g [query | -o <idea> | -a <cmd> <desc> | --sync <url> | info <module> | --help]")
+        print("Usage: G [query | -o <idea> | -a <alias> <cmd> | -rm <alias> | ls | update | --sync <url> | info <module> | --help]")
         print("\nAvailable Modules:")
         for mod in get_modules_info():
             print(f"  {mod['id']:<20} {mod['desc']}")
@@ -797,12 +855,12 @@ def main():
         interactive_mode(registry)
     elif args[0] == "info":
         if len(args) < 2:
-            print_err("Usage: g info <module>")
+            print_err("Usage: G info <module>")
             sys.exit(1)
         show_module_info(args[1], registry)
     elif args[0] == "-o":
         if len(args) < 2:
-            print_err("Usage: g -o 'your idea'")
+            print_err("Usage: G -o 'your idea'")
             sys.exit(1)
         run_ollama(" ".join(args[1:]))
     elif args[0] == "--sync":
@@ -820,6 +878,10 @@ def main():
             print_err("Usage: G -rm <alias>")
             sys.exit(1)
         remove_custom(args[1])
+    elif args[0] == "ls":
+        list_custom()
+    elif args[0] == "update":
+        run_update()
     else:
         query = " ".join(args)
         best_guess(query, registry)

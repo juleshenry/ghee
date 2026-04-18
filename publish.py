@@ -220,7 +220,7 @@ def main() -> None:
     print(f"  pip install ghee-cli")
     print(f"\nAnd run with:")
     print(f"  ghee --help")
-    print(f"  g --help")
+    print(f"  G --help")
 
 
 if __name__ == "__main__":

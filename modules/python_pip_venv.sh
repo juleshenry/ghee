@@ -87,3 +87,32 @@ alias jlab='jupyter lab'
 # 245. pip install editable
 alias pide='pip3 install -e .'
 
+# uv (fast pip replacement)
+_GG_REGISTRY["uvi"]="uv pip install PACKAGE ||| Install with uv (fast pip)"
+_GG_REGISTRY["uvr"]="uv pip install -r requirements.txt ||| Install requirements with uv"
+_GG_REGISTRY["uvvenv"]="uv venv ||| Create venv with uv"
+
+alias uvi='uv pip install'
+alias uvr='uv pip install -r requirements.txt'
+alias uvvenv='uv venv'
+
+# Ruff (linter/formatter)
+_GG_REGISTRY["rcheck"]="ruff check . ||| Lint with ruff"
+_GG_REGISTRY["rfix"]="ruff check --fix . ||| Lint and autofix with ruff"
+_GG_REGISTRY["rfmt"]="ruff format . ||| Format with ruff"
+
+alias rcheck='ruff check .'
+alias rfix='ruff check --fix .'
+alias rfmt='ruff format .'
+
+# Poetry
+_GG_REGISTRY["poi"]="poetry install ||| Poetry install dependencies"
+_GG_REGISTRY["poa"]="poetry add PACKAGE ||| Poetry add package"
+_GG_REGISTRY["por"]="poetry run COMMAND ||| Poetry run command"
+_GG_REGISTRY["pos"]="poetry shell ||| Poetry activate shell"
+
+alias poi='poetry install'
+alias poa='poetry add'
+alias por='poetry run'
+alias pos='poetry shell'
+

@@ -99,3 +99,20 @@ dbuild() {
     docker build -t "$1" "${2:-.}"
 }
 
+# Docker inspection and registry
+_GG_REGISTRY["dstats"]="docker stats ||| Show live container resource usage"
+_GG_REGISTRY["dinsp"]="docker inspect CONTAINER ||| Inspect container details"
+_GG_REGISTRY["dsdf"]="docker system df ||| Show Docker disk usage"
+_GG_REGISTRY["dtag"]="docker tag IMAGE:TAG NEW:TAG ||| Tag a Docker image"
+_GG_REGISTRY["dpush"]="docker push IMAGE:TAG ||| Push image to registry"
+_GG_REGISTRY["dpull"]="docker pull IMAGE ||| Pull image from registry"
+_GG_REGISTRY["dcp"]="docker cp CONTAINER:SRC DEST ||| Copy files from container"
+
+alias dstats='docker stats'
+alias dinsp='docker inspect'
+alias dsdf='docker system df'
+alias dtag='docker tag'
+alias dpush='docker push'
+alias dpull='docker pull'
+alias dcp='docker cp'
+
