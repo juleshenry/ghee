@@ -232,12 +232,16 @@ class TestCustomCommands(TestCase):
             pass
 
     def test_add_custom_appends(self):
-        ghee.add_custom("kubectl top nodes", "ktopn")
+        with patch('ghee.is_system_command', return_value=False), \
+             patch('ghee.Confirm.ask', return_value=True):
+            ghee.add_custom("kubectl top nodes", "ktopn")
         content = ghee.CUSTOM_FILE.read_text()
         self.assertIn("ktopn|||kubectl top nodes|||kubectl top nodes", content)
 
     def test_add_custom_preserves_existing(self):
-        ghee.add_custom("echo hi", "ehi")
+        with patch('ghee.is_system_command', return_value=False), \
+             patch('ghee.Confirm.ask', return_value=True):
+            ghee.add_custom("echo hi", "ehi")
         content = ghee.CUSTOM_FILE.read_text()
         self.assertIn("olist|||ollama list|||List ollama models", content)
         self.assertIn("ehi|||echo hi|||echo hi", content)
@@ -268,7 +272,9 @@ class TestCustomCommands(TestCase):
     def test_add_custom_invalidates_cache(self):
         # Create a fake cache file
         ghee.CACHE_FILE.write_text('{"registry": {}, "timestamp": 0}')
-        ghee.add_custom("echo test", "etest")
+        with patch('ghee.is_system_command', return_value=False), \
+             patch('ghee.Confirm.ask', return_value=True):
+            ghee.add_custom("echo test", "etest")
         # Cache should be deleted
         self.assertFalse(ghee.CACHE_FILE.exists())
 
