@@ -263,6 +263,25 @@ def is_system_command(name: str) -> bool:
     except Exception:
         return False
 
+def get_system_command_detail(name: str) -> str:
+    """Get the detail of what a system command/alias/function actually is."""
+    try:
+        # 'type -a' shows all occurrences including aliases and functions
+        result = subprocess.run(
+            ["bash", "-c", f"type -a {name}"],
+            capture_output=True, text=True, timeout=2
+        )
+        if result.returncode == 0:
+            # Clean up output to show just the relevant info
+            lines = result.stdout.strip().splitlines()
+            return " | ".join(lines)
+    except Exception:
+        pass
+    
+    import shutil
+    path = shutil.which(name)
+    return str(path) if path else "Unknown system command"
+
 def add_custom(cmd: str, alias: str, registry: Optional[Dict[str, Any]] = None) -> None:
     """
     Add a custom shortcut to the registry.
@@ -291,21 +310,28 @@ def add_custom(cmd: str, alias: str, registry: Optional[Dict[str, Any]] = None) 
         registry = load_registry()
 
     clash_msg = ""
+    detail_msg = ""
     is_custom = False
+    
     if alias in registry:
         module = registry[alias].get("module", "unknown")
+        existing_cmd = registry[alias].get("cmd", "unknown")
         is_custom = (module == "custom")
         clash_msg = f"Alias '{alias}' already exists in Ghee (module: {module})."
+        detail_msg = f"Runs: {existing_cmd}"
     elif is_system_command(alias):
         clash_msg = f"Alias '{alias}' clashes with a system command, alias, or function."
+        detail_msg = get_system_command_detail(alias)
 
     if clash_msg:
         print_warn(clash_msg)
         if RICH_AVAILABLE:
+            console.print(f"[bold cyan]Detail:[/bold cyan] {detail_msg}")
             if not Confirm.ask("Do you want to overwrite it?"):
                 print_info("Operation cancelled.")
                 return
         else:
+            print(f"Detail: {detail_msg}")
             choice = input("Do you want to overwrite it? (y/N): ").lower()
             if choice != 'y':
                 print_info("Operation cancelled.")

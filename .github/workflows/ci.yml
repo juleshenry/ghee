@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Bats
-        uses: migalhas/setup-bats@v1
+        uses: bats-core/bats-action@v3
         with:
           bats-version: 1.9.0
       - name: Run Bats Tests
