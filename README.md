@@ -38,7 +38,8 @@ Covers: Git, Docker, Kubernetes, AWS, GCP, Terraform, Heroku, Vercel, Fly.io, Ra
 
 - 🔍 **`G`** — Interactive Python TUI to fuzzy-search all 616+ commands with live preview
 - ⚡ **`G 'docker logs'`** — Best-guess any shell command, copies match to clipboard
-- ➕ **`G -a olist 'ollama list'`** — Add your own custom shortcut, instantly available
+- ➕ **`G -a olist 'ollama list'`** — Add your own custom shortcut, instantly available.
+- 🛡️ **Clash Detection** — Automatically warns if an alias clashes with a system command or existing Ghee shortcut, asking for confirmation before overwriting.
 - ➖ **`G -rm olist`** — Remove a custom shortcut
 - 📋 **`G ls`** — List all your custom shortcuts
 - 🔄 **`G update`** — Self-update ghee via git pull
@@ -164,7 +165,7 @@ ghee/
 
 | Alias | Runs | Description |
 |-------|------|-------------|
-| `ollama` | `ollama run MODEL` | Run a local LLM model via Ollama |
+| `ollrun` | `ollama run MODEL` | Run a local LLM model via Ollama |
 | `ollmls` | `ollama list` | List locally downloaded Ollama models |
 | `ollpull` | `ollama pull MODEL` | Download an Ollama model |
 | `ollamaserv` | `ollama serve` | Start Ollama API server on port 11434 |
@@ -291,7 +292,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | Follow container logs |
 | `dstop` | `docker stop \$(docker ps -aq)` | Stop all containers |
 | `dprune` | `docker system prune -af` | Prune everything (containers, images, networks) |
-| `dc` | `docker compose` | Docker Compose shortcut |
+| `dcom` | `docker compose` | Docker Compose shortcut |
 | `dcu` | `docker compose up -d` | Compose up (detached) |
 | `dcd` | `docker compose down` | Compose down |
 | `dcb` | `docker compose build` | Compose build |
@@ -375,7 +376,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | List changed filenames |
 | `gdstat` | `git diff --name-status` | Changed files with status |
 | `gdlc` | `git diff HEAD^ HEAD` | Diff of last commit |
-| `gls` | `git ls-files` | List tracked files |
+| `glst` | `git ls-files` | List tracked files |
 | `glsu` | `git ls-files --others` | List untracked files |
 | `gcontrib` | `git shortlog -sn` | Show contributors |
 | `gfh` | `git log --follow -p -- FILE` | Show full file history |
@@ -408,7 +409,7 @@ ghee/
 | `gcf` | `git clean -f` | Clean untracked files |
 | `gcfd` | `git clean -fd` | Clean untracked files + dirs |
 | `gdis` | `git checkout -- FILE` | Discard changes in file |
-| `gcp` | `git cherry-pick HASH` | Cherry-pick a commit |
+| `gcpy` | `git cherry-pick HASH` | Cherry-pick a commit |
 | `gcpc` | `git cherry-pick --continue` | Continue cherry-pick |
 | `gcpa` | `git cherry-pick --abort` | Abort cherry-pick |
 | `grbi` | `git rebase -i HASH` | Interactive rebase |
@@ -417,7 +418,7 @@ ghee/
 | `grbs` | `git rebase --skip` | Skip rebase step |
 | `gt` | `git tag` | Show tags |
 | `gta` | `git tag -a TAG` | Create annotated tag |
-| `gpt` | `git push --tags` | Push all tags |
+| `gpht` | `git push --tags` | Push all tags |
 
 ### Git Workflow
 
@@ -431,7 +432,7 @@ ghee/
 | `gunwip` | `git reset --soft HEAD~1` | Undo last WIP commit, keep changes staged |
 | `gpristine` | `git reset --hard origin/BRANCH && git clean -fd` | Hard-reset to match remote exactly |
 | `gtag` | `git tag -a TAG -m MSG && git push origin TAG` | Create and push a git tag |
-| `gpr` | `gh pr create --title TITLE --fill` | Create a GitHub PR via gh CLI |
+| `ghprc` | `gh pr create --title TITLE --fill` | Create a GitHub PR via gh CLI |
 | `gdiff-fancy` | `git diff --stat + git diff --shortstat` | Pretty diff summary with stats |
 | `gacp` | `git add . && git commit -m MSG && git push` | Add, commit, push (same as gg) |
 | `ginit` | `git init && git add . && git commit -m 'Initial commit'` | Init repo with first commit |
@@ -559,7 +560,7 @@ ghee/
 
 | Alias | Runs | Description |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | Prevent Mac from sleeping |
+| `caf` | `caffeinate -d` | Prevent Mac from sleeping |
 | `hidefiles` | `defaults write com.apple.finder AppleShowAllFiles NO; killall Finder` | Hide hidden files in Finder |
 | `showfiles` | `defaults write com.apple.finder AppleShowAllFiles YES; killall Finder` | Show hidden files in Finder |
 | `flushui` | `killall Dock; killall Finder` | Restart Dock and Finder to fix UI glitches |
@@ -611,8 +612,8 @@ ghee/
 | `path` | `echo \$PATH \| tr : newline` | Show PATH (one per line) |
 | `cx` | `chmod +x FILE` | Make file executable |
 | `isodate` | `date -u +%Y-%m-%dT%H:%M:%SZ` | Print ISO 8601 timestamp |
-| `sha256` | `shasum -a 256 FILE` | SHA256 hash of file |
-| `md5sum` | `md5 FILE` | MD5 hash of file |
+| `sh256` | `shasum -a 256 FILE` | SHA256 hash of file |
+| `md5s` | `md5 FILE` | MD5 hash of file |
 
 ### Misc Devops
 
@@ -653,7 +654,7 @@ ghee/
 | `digs` | `dig +short DOMAIN` | Quick DNS lookup |
 | `digr` | `dig -x IP` | Reverse DNS lookup |
 | `nsl` | `nslookup DOMAIN` | nslookup shortcut |
-| `trace` | `traceroute HOST` | Traceroute to host |
+| `trce` | `traceroute HOST` | Traceroute to host |
 | `nstat` | `netstat -tlnp` | Show listening ports (netstat) |
 | `ssl` | `ss -tlnp` | Show listening ports (ss) |
 | `conns` | `ss -s` | Show connection summary |
@@ -795,10 +796,10 @@ ghee/
 | `cadd` | `cargo add CRATE` | Add a Rust crate dependency |
 | `gbuild` | `go build ./...` | Build Go project |
 | `grun` | `go run .` | Run Go main package |
-| `gtest` | `go test ./...` | Run all Go tests |
+| `gotst` | `go test ./...` | Run all Go tests |
 | `gvet` | `go vet ./...` | Run Go static analysis |
 | `gmod` | `go mod tidy` | Tidy Go module dependencies |
-| `gfmt` | `gofmt -w .` | Format all Go files |
+| `gofm` | `gofmt -w .` | Format all Go files |
 | `gget` | `go get PACKAGE` | Install a Go package |
 
 ### Shell File Utilities

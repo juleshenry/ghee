@@ -21,6 +21,7 @@ try:
     from rich.table import Table
     from rich.panel import Panel
     from rich.text import Text
+    from rich.prompt import Confirm
     from rich import box
     RICH_AVAILABLE = True
 except ImportError:
@@ -244,15 +245,35 @@ def save_registry_cache(registry: Dict[str, Dict[str, str]]) -> None:
     except IOError as e:
         print_err(f"Failed to save cache: {e}")
 
-def add_custom(cmd: str, alias: str) -> None:
+def is_system_command(name: str) -> bool:
+    """Check if a command name is already a system command, alias, or function."""
+    # Check for binaries in PATH
+    import shutil
+    if shutil.which(name):
+        return True
+    
+    # Check for shell builtins/aliases/functions by invoking a shell
+    try:
+        # Use 'command -v' which works in most POSIX shells
+        result = subprocess.run(
+            ["bash", "-c", f"command -v {name}"],
+            capture_output=True, text=True, timeout=2
+        )
+        return result.returncode == 0
+    except Exception:
+        return False
+
+def add_custom(cmd: str, alias: str, registry: Optional[Dict[str, Any]] = None) -> None:
     """
     Add a custom shortcut to the registry.
 
     Validates inputs for safety and correctness before adding to the custom file.
+    Detects clashes with system commands and existing aliases.
 
     Args:
         cmd: The full command to shortcut (e.g. 'ollama list')
         alias: The short alias name (e.g. 'olist')
+        registry: The current registry (optional, will be loaded if not provided)
     """
     # Validate inputs
     cmd_valid, cmd_err = validate_command_input(cmd)
@@ -264,6 +285,37 @@ def add_custom(cmd: str, alias: str) -> None:
     if not alias_valid:
         print_err(f"Invalid alias: {alias_err}")
         sys.exit(1)
+
+    # Check for clashes
+    if registry is None:
+        registry = load_registry()
+
+    clash_msg = ""
+    is_custom = False
+    if alias in registry:
+        module = registry[alias].get("module", "unknown")
+        is_custom = (module == "custom")
+        clash_msg = f"Alias '{alias}' already exists in Ghee (module: {module})."
+    elif is_system_command(alias):
+        clash_msg = f"Alias '{alias}' clashes with a system command, alias, or function."
+
+    if clash_msg:
+        print_warn(clash_msg)
+        if RICH_AVAILABLE:
+            if not Confirm.ask("Do you want to overwrite it?"):
+                print_info("Operation cancelled.")
+                return
+        else:
+            choice = input("Do you want to overwrite it? (y/N): ").lower()
+            if choice != 'y':
+                print_info("Operation cancelled.")
+                return
+
+    # If it was a custom alias, remove old entries first to avoid duplicates
+    if is_custom and CUSTOM_FILE.exists():
+        lines = CUSTOM_FILE.read_text().splitlines()
+        new_lines = [l for l in lines if l.strip() and l.split("|||")[0].strip() != alias]
+        CUSTOM_FILE.write_text("\n".join(new_lines) + ("\n" if new_lines else ""))
 
     try:
         with open(CUSTOM_FILE, "a") as f:
@@ -872,7 +924,7 @@ def main():
             sys.exit(1)
         alias_name = args[1]
         cmd = " ".join(args[2:])
-        add_custom(cmd, alias_name)
+        add_custom(cmd, alias_name, registry)
     elif args[0] == "-rm":
         if len(args) < 2:
             print_err("Usage: G -rm <alias>")

@@ -20,8 +20,8 @@ _GG_REGISTRY["erc"]="\${EDITOR:-vi} ~/.<shell>rc ||| Edit shell RC file"]
 _GG_REGISTRY["path"]="echo \$PATH | tr : newline ||| Show PATH (one per line)"]
 _GG_REGISTRY["cx"]="chmod +x FILE ||| Make file executable"]
 _GG_REGISTRY["isodate"]="date -u +%Y-%m-%dT%H:%M:%SZ ||| Print ISO 8601 timestamp"]
-_GG_REGISTRY["sha256"]="shasum -a 256 FILE ||| SHA256 hash of file"]
-_GG_REGISTRY["md5sum"]="md5 FILE ||| MD5 hash of file"]
+_GG_REGISTRY["sh256"]="shasum -a 256 FILE ||| SHA256 hash of file"
+_GG_REGISTRY["md5s"]="md5 FILE ||| MD5 hash of file"
 
 # 320. Disk usage summary
 alias duh='du -sh * | sort -rh'

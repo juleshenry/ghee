@@ -6,7 +6,7 @@
 
 # macOS Power Tools
 
-_GG_REGISTRY["caffeinate"]="caffeinate -d ||| Prevent Mac from sleeping"
+_GG_REGISTRY["caf"]="caffeinate -d|||Prevent Mac from sleeping"
 _GG_REGISTRY["hidefiles"]="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder ||| Hide hidden files in Finder"
 _GG_REGISTRY["showfiles"]="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder ||| Show hidden files in Finder"
 _GG_REGISTRY["flushui"]="killall Dock; killall Finder ||| Restart Dock and Finder to fix UI glitches"

@@ -6,7 +6,7 @@
 
 # AI / LLM CLI Tools
 
-_GG_REGISTRY["ollama"]="ollama run MODEL ||| Run a local LLM model via Ollama"
+_GG_REGISTRY["ollrun"]="ollama run MODEL|||Run a local LLM model via Ollama"
 _GG_REGISTRY["ollmls"]="ollama list ||| List locally downloaded Ollama models"
 _GG_REGISTRY["ollpull"]="ollama pull MODEL ||| Download an Ollama model"
 _GG_REGISTRY["ollamaserv"]="ollama serve ||| Start Ollama API server on port 11434"
