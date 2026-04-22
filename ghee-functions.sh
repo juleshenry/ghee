@@ -36,8 +36,8 @@ _ghee_load_custom_aliases() {
             local a="${line%%|||*}"
             local rest="${line#*|||}"
             local c="${rest%%|||*}"
-            a="$(echo "$a" | xargs)"
-            c="$(echo "$c" | xargs)"
+            a="$(printf '%s\n' "$a" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
+            c="$(printf '%s\n' "$c" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
             [ -z "$a" ] || [ -z "$c" ] && continue
             # Only create alias if alias name is a single word (valid alias)
             if [[ "$a" =~ ^[a-zA-Z_][a-zA-Z0-9_-]*$ ]]; then
