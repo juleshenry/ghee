@@ -105,7 +105,8 @@ G 'docker logs'              # Best-guess, copies best match to clipboard
 G -a olist 'ollama list'     # Add a custom shortcut (works instantly)
 G -rm olist                  # Remove a custom shortcut
 G ls                         # List all custom shortcuts
-G -o 'find large files'     # Ask Ollama AI to generate a command
+G -q 'find large files'     # Ask Ollama AI (alias for -o)
+G -q 'find large files' --model qwen2.5 # Ask specific Ollama model
 G info docker                # Show all aliases for a specific module
 G update                     # Self-update ghee via git pull
 G --sync <gist_url>          # Sync custom shortcuts from a GitHub Gist

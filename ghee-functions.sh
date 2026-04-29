@@ -103,7 +103,7 @@ g() {
 if [ -n "$ZSH_VERSION" ]; then
     _ghee_completions() {
         local -a subcmds
-        subcmds=('-a:Add a custom shortcut' '-rm:Remove a custom shortcut' 'ls:List custom shortcuts' '-o:Ask Ollama AI' '--sync:Sync from Gist' 'info:Show module aliases' 'update:Self-update ghee' '--help:Show help')
+        subcmds=('-a:Add a custom shortcut' '-rm:Remove a custom shortcut' 'ls:List custom shortcuts' '-o:Ask Ollama AI' '-q:Ask Ollama AI' '--sync:Sync from Gist' 'info:Show module aliases' 'update:Self-update ghee' '--help:Show help')
         _describe 'G commands' subcmds
     }
     compdef _ghee_completions G
@@ -111,7 +111,7 @@ if [ -n "$ZSH_VERSION" ]; then
 elif [ -n "$BASH_VERSION" ]; then
     _ghee_completions() {
         local cur="${COMP_WORDS[COMP_CWORD]}"
-        COMPREPLY=($(compgen -W "-a -rm ls -o --sync info update --help" -- "$cur"))
+        COMPREPLY=($(compgen -W "-a -rm ls -o -q --sync info update --help" -- "$cur"))
     }
     complete -F _ghee_completions G
     complete -F _ghee_completions g

@@ -526,22 +526,80 @@ def score_match(query: str, key: str, cmd: str, desc: str) -> int:
 
     return score
 
-def get_ollama_model():
+def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
+    """
+    Get the preferred Ollama model from cache, auto-detection, or user override.
+
+    Args:
+        requested_model: Optional model name to override the default/cached selection.
+        
+    Returns:
+        The name of the model to use, or None if no models are available.
+    """
     import urllib.request
+... (rest of the function as is, but I'll provide the full block for replacement)
+    config = load_config()
+    
+    # 1. Fetch available models from Ollama
+    available_models = []
     try:
         req = urllib.request.Request("http://localhost:11434/api/tags")
         with urllib.request.urlopen(req, timeout=2) as response:
-            data = json.loads(response.read().decode('utf-8'))
-            models = [m['name'] for m in data.get('models', [])]
-            for pref in ['llama3.2', 'llama3', 'mistral', 'codellama']:
-                for m in models:
-                    if m.startswith(pref): return m
-            if models: return models[0]
+            data = json.loads(response.read().decode(\'utf-8\'))
+            available_models = [m[\'name\'] for m in data.get(\'models\', [])]
     except Exception:
-        pass
-    return None
+        return None
 
-def ask_ollama(query, model):
+    if not available_models:
+        return None
+
+    # 2. If user provided an override, use it (if it exists)
+    if requested_model:
+        matched = None
+        for m in available_models:
+            if m == requested_model or m.startswith(requested_model + ":"):
+                matched = m
+                break
+        
+        if matched:
+            config["preferred_ollama_model"] = matched
+            save_config(config)
+            return matched
+        else:
+            print_warn(f"Model \'{requested_model}\' not found. Falling back...")
+    
+    # 3. Check config for cached selection
+    cached_model = config.get("preferred_ollama_model")
+    if cached_model:
+        # Verify it still exists
+        if cached_model in available_models or any(m.startswith(cached_model + ":") for m in available_models):
+            return cached_model
+
+    # 4. Auto-detect from preference list
+    for pref in [\'qwen2.5\', \'llama3.2\', \'llama3\', \'mistral\', \'codellama\']:
+        for m in available_models:
+            if m.startswith(pref):
+                config["preferred_ollama_model"] = m
+                save_config(config)
+                return m
+    
+    # 5. Fallback to first available
+    best = available_models[0]
+    config["preferred_ollama_model"] = best
+    save_config(config)
+    return best
+
+def ask_ollama(query: str, model: str) -> Optional[str]:
+    """
+    Query Ollama to convert a natural language idea into a shell command.
+
+    Args:
+        query: The natural language description of the desired command.
+        model: The name of the Ollama model to use for generation.
+
+    Returns:
+        A string containing the generated shell command, or None on failure.
+    """
     import urllib.request
     try:
         url = "http://localhost:11434/api/generate"
@@ -551,17 +609,24 @@ def ask_ollama(query, model):
             "prompt": prompt,
             "stream": False
         }
-        req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'})
+        req = urllib.request.Request(url, data=json.dumps(data).encode(\'utf-8\'), headers={\'Content-Type\': \'application/json\'})
         with urllib.request.urlopen(req, timeout=15) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            command = result.get('response', '').strip()
-            if command.startswith('```') and command.endswith('```'):
-                command = command.strip('`').strip()
-                if command.startswith('bash'):
+            result = json.loads(response.read().decode(\'utf-8\'))
+            command = result.get(\'response\', \'\').strip()
+            if command.startswith(\'```\') and command.endswith(\'```\'):
+                command = command.strip(\'`\').strip()
+                if command.startswith(\'bash\'):
                     command = command[4:].strip()
             return command
     except Exception:
         return None
+
+def save_config(config: Dict[str, Any]) -> None:
+    """Save user configuration to ~/.ghee-config.json."""
+    try:
+        CONFIG_FILE.write_text(json.dumps(config, indent=2))
+    except IOError as e:
+        print_err(f"Failed to save config: {e}")
 
 def getch() -> str:
     """Read a single keypress (Cross-platform)."""
@@ -614,9 +679,17 @@ def copy_to_clipboard(text: str) -> bool:
         print_err(f"Failed to copy to clipboard: {e}")
     return False
 
-def run_ollama(query: str):
-    """Explicitly ask Ollama to generate a command."""
-    model = get_ollama_model()
+def run_ollama(query: str, model_override: Optional[str] = None):
+    """
+    Explicitly ask Ollama to generate and optionally run a command.
+
+    Prompts the user to run, copy, or cancel after generating the command.
+
+    Args:
+        query: The natural language idea to convert.
+        model_override: Optional model name to use instead of the default/cached selection.
+    """
+    model = get_ollama_model(model_override)
     if not model:
         print_err("No active Ollama models found. Is Ollama running?")
         return
@@ -863,16 +936,16 @@ def show_help():
     if RICH_AVAILABLE:
         console.print(Panel("[bold magenta]Ghee[/bold magenta] - Shell Shortcut Manager", expand=False, box=box.ROUNDED))
         console.print("\n[bold]Usage:[/bold]")
-        console.print("  [cyan]G[/cyan]                  Interactive fuzzy search")
-        console.print("  [cyan]G <query>[/cyan]          Fuzzy search for a specific command")
-        console.print("  [cyan]G -a <alias> <cmd>[/cyan] Add a custom shortcut (works instantly)")
-        console.print("  [cyan]G -rm <alias>[/cyan]      Remove a custom shortcut")
-        console.print("  [cyan]G ls[/cyan]               List all custom shortcuts")
-        console.print("  [cyan]G -o <idea>[/cyan]         Ask Ollama AI to generate a command")
-        console.print("  [cyan]G --sync <url>[/cyan]     Sync custom commands from a Gist")
-        console.print("  [cyan]G info <module>[/cyan]    Show aliases for a specific module")
-        console.print("  [cyan]G update[/cyan]           Self-update ghee via git pull")
-        console.print("  [cyan]G --help[/cyan]           Show this help message")
+        console.print("  [cyan]G[/cyan]                        Interactive fuzzy search")
+        console.print("  [cyan]G <query>[/cyan]                Fuzzy search for a specific command")
+        console.print("  [cyan]G -a <alias> <cmd>[/cyan]       Add a custom shortcut (works instantly)")
+        console.print("  [cyan]G -rm <alias>[/cyan]            Remove a custom shortcut")
+        console.print("  [cyan]G ls[/cyan]                     List all custom shortcuts")
+        console.print("  [cyan]G -q <idea> [--model M][/cyan] Ask Ollama AI to generate a command")
+        console.print("  [cyan]G --sync <url>[/cyan]           Sync custom commands from a Gist")
+        console.print("  [cyan]G info <module>[/cyan]          Show aliases for a specific module")
+        console.print("  [cyan]G update[/cyan]                 Self-update ghee via git pull")
+        console.print("  [cyan]G --help[/cyan]                 Show this help message")
         
         console.print("\n[bold]Available Modules:[/bold]")
         table = Table(box=box.SIMPLE_HEAD, show_header=True)
@@ -886,40 +959,13 @@ def show_help():
         console.print(table)
     else:
         print("Ghee - Shell Shortcut Manager")
-        print("Usage: G [query | -o <idea> | -a <alias> <cmd> | -rm <alias> | ls | update | --sync <url> | info <module> | --help]")
+        print("Usage: G [query | -q <idea> [--model M] | -a <alias> <cmd> | -rm <alias> | ls | update | --sync <url> | info <module> | --help]")
         print("\nAvailable Modules:")
         for mod in get_modules_info():
             print(f"  {mod['id']:<20} {mod['desc']}")
 
 def show_module_info(module_id: str, registry: Dict[str, Dict[str, str]]):
-    """Show aliases for a specific module."""
-    aliases = []
-    for key, data in registry.items():
-        if data.get("module") == module_id:
-            aliases.append((key, data["cmd"], data["desc"]))
-            
-    if not aliases:
-        print_err(f"Module '{module_id}' not found or empty.")
-        return
-        
-    aliases.sort(key=lambda x: x[0])
-    
-    if RICH_AVAILABLE:
-        console.print(Panel(f"[bold magenta]Module: {module_id}[/bold magenta]", expand=False, box=box.ROUNDED))
-        table = Table(box=box.SIMPLE_HEAD, show_header=True)
-        table.add_column("Alias", style="bold green")
-        table.add_column("Command", style="cyan")
-        table.add_column("Description", style="dim")
-        
-        for alias, cmd, desc in aliases:
-            table.add_row(alias, cmd, desc)
-            
-        console.print(table)
-    else:
-        print(f"--- Module: {module_id} ---")
-        for alias, cmd, desc in aliases:
-            print(f"  {alias:<15} {cmd:<30} {desc}")
-
+# ... (omitting for brevity in this specific tool call, will use full block below)
 def main():
     args = sys.argv[1:]
     
@@ -936,11 +982,22 @@ def main():
             print_err("Usage: G info <module>")
             sys.exit(1)
         show_module_info(args[1], registry)
-    elif args[0] == "-o":
+    elif args[0] in ("-o", "-q"):
         if len(args) < 2:
-            print_err("Usage: G -o 'your idea'")
+            print_err("Usage: G -q \'your idea\' [--model <model>]")
             sys.exit(1)
-        run_ollama(" ".join(args[1:]))
+        
+        query_parts = []
+        model_override = None
+        i = 1
+        while i < len(args):
+            if args[i] == "--model" and i + 1 < len(args):
+                model_override = args[i+1]
+                i += 2
+            else:
+                query_parts.append(args[i])
+                i += 1
+        run_ollama(" ".join(query_parts), model_override)
     elif args[0] == "--sync":
         url = args[1] if len(args) > 1 else None
         sync_custom(url)

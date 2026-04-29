@@ -121,7 +121,7 @@ User's custom shortcuts are stored in `~/.ghee-custom` and survive reinstalls.
 | `G <query>` | Best-guess search, copies to clipboard |
 | `G -a <alias> <cmd>` | Add custom shortcut (works instantly) |
 | `G -rm <alias>` | Remove a custom shortcut |
-| `G -o <idea>` | Ask Ollama AI to generate a command (if available) |
+| `G -q <idea> [--model M]` | Ask Ollama AI to generate a command |
 | `G --sync <url>` | Sync custom commands from a Gist |
 | `G info <module>` | Show aliases for a specific module |
 | `G --help` | Show help and module list |
