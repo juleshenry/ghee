@@ -6,12 +6,26 @@
 Project documentation
 =====================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Ghee is a senior-friendly shell shortcut manager with AI-assisted command generation.
 
+Usage
+-----
+
+.. code-block:: bash
+
+   G                            # Interactive fuzzy finder
+   G <query>                    # Best-guess search
+   G -a <alias> <cmd>           # Add custom shortcut
+   G -rm <alias>                # Remove a custom shortcut
+   G ls                         # List all custom shortcuts
+   G -q <idea> [--model <M>]    # Ask Ollama AI to generate a command
+   G info <module>              # Show aliases for a specific module
+   G update                     # Self-update ghee
+   G --help                     # Show help
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+
+   modules
 
