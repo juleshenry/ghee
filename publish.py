@@ -4,7 +4,7 @@ publish.py — Build and publish ghee-cli to PyPI.
 
 Usage:
     python publish.py [version]
-    
+
 If no version is provided, it will prompt for one with a smart default.
 """
 
@@ -203,7 +203,7 @@ def main() -> None:
     # Ask for confirmation before uploading
     print("\nThis will upload to PyPI. Are you sure?")
     confirm = input("Type 'yes' to confirm: ").strip().lower()
-    if confirm != 'yes':
+    if confirm != "yes":
         print("Upload cancelled.")
         print(f"\nYou can upload manually later with:")
         print(f"  python3 -m twine upload dist/*")
@@ -212,7 +212,7 @@ def main() -> None:
     print("\nUploading to PyPI...")
     run_command(
         "python3 -m twine upload dist/*",
-        "Upload failed. Check your PyPI credentials and try again."
+        "Upload failed. Check your PyPI credentials and try again.",
     )
 
     print(f"\n✅ Successfully published ghee-cli {tag_version} to PyPI!")

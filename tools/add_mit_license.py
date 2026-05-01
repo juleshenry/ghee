@@ -46,6 +46,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+
 def load_croc_shades() -> str:
     """Read the croc-shades ASCII art from the file next to this script."""
     with open(CROC_SHADES_PATH, "r", encoding="utf-8") as f:
@@ -62,7 +63,9 @@ def fetch_public_repos(username: str) -> list[dict]:
             f"https://api.github.com/users/{username}/repos"
             f"?type=owner&per_page={per_page}&page={page}"
         )
-        req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json"})
+        req = urllib.request.Request(
+            url, headers={"Accept": "application/vnd.github+json"}
+        )
         with urllib.request.urlopen(req) as resp:
             data = json.loads(resp.read().decode())
         if not data:
@@ -80,14 +83,21 @@ def repo_has_license(repo: dict) -> bool:
     if repo.get("license") and repo["license"].get("spdx_id") != "NOASSERTION":
         return True
     # Double-check by looking for common license filenames in the repo root
-    contents_url = (
-        f"https://api.github.com/repos/{repo['full_name']}/contents/"
-    )
+    contents_url = f"https://api.github.com/repos/{repo['full_name']}/contents/"
     try:
-        req = urllib.request.Request(contents_url, headers={"Accept": "application/vnd.github+json"})
+        req = urllib.request.Request(
+            contents_url, headers={"Accept": "application/vnd.github+json"}
+        )
         with urllib.request.urlopen(req) as resp:
             items = json.loads(resp.read().decode())
-        license_names = {"license", "license.md", "license.txt", "licence", "licence.md", "licence.txt"}
+        license_names = {
+            "license",
+            "license.md",
+            "license.txt",
+            "licence",
+            "licence.md",
+            "licence.txt",
+        }
         for item in items:
             if item.get("name", "").lower() in license_names:
                 return True

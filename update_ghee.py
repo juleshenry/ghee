@@ -7,4 +7,3 @@ with open("ghee.py", "r") as f:
 # Wait, actually we can just create a new function `load_modules_info()`
 # or we can modify `load_registry()` but it's used elsewhere.
 # Let's just create `def show_help():` and `def show_info(module_name):`
-
