@@ -537,7 +537,6 @@ def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
         The name of the model to use, or None if no models are available.
     """
     import urllib.request
-... (rest of the function as is, but I'll provide the full block for replacement)
     config = load_config()
     
     # 1. Fetch available models from Ollama
@@ -545,8 +544,8 @@ def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
     try:
         req = urllib.request.Request("http://localhost:11434/api/tags")
         with urllib.request.urlopen(req, timeout=2) as response:
-            data = json.loads(response.read().decode(\'utf-8\'))
-            available_models = [m[\'name\'] for m in data.get(\'models\', [])]
+            data = json.loads(response.read().decode('utf-8'))
+            available_models = [m['name'] for m in data.get('models', [])]
     except Exception:
         return None
 
@@ -566,7 +565,7 @@ def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
             save_config(config)
             return matched
         else:
-            print_warn(f"Model \'{requested_model}\' not found. Falling back...")
+            print_warn(f"Model '{requested_model}' not found. Falling back...")
     
     # 3. Check config for cached selection
     cached_model = config.get("preferred_ollama_model")
@@ -576,7 +575,7 @@ def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
             return cached_model
 
     # 4. Auto-detect from preference list
-    for pref in [\'qwen2.5\', \'llama3.2\', \'llama3\', \'mistral\', \'codellama\']:
+    for pref in ['qwen2.5', 'llama3.2', 'llama3', 'mistral', 'codellama']:
         for m in available_models:
             if m.startswith(pref):
                 config["preferred_ollama_model"] = m
@@ -589,13 +588,14 @@ def get_ollama_model(requested_model: Optional[str] = None) -> Optional[str]:
     save_config(config)
     return best
 
-def ask_ollama(query: str, model: str) -> Optional[str]:
+def ask_ollama(query: str, model: str, context: Optional[str] = None) -> Optional[str]:
     """
     Query Ollama to convert a natural language idea into a shell command.
 
     Args:
         query: The natural language description of the desired command.
         model: The name of the Ollama model to use for generation.
+        context: Optional additional context or feedback for refinement.
 
     Returns:
         A string containing the generated shell command, or None on failure.
@@ -603,22 +603,37 @@ def ask_ollama(query: str, model: str) -> Optional[str]:
     import urllib.request
     try:
         url = "http://localhost:11434/api/generate"
-        prompt = f"Convert this natural language idea into a single, valid bash/shell command for macOS/Linux. Output ONLY the command, no markdown formatting, no backticks, no explanations. Idea: {query}"
+        platform_info = f"operating system is {sys.platform}"
+        if sys.platform == "darwin":
+            platform_info = "operating system is macOS (using BSD versions of utilities like du, sed, etc., note that 'du' uses '-d' instead of '--max-depth')"
+        elif sys.platform.startswith("linux"):
+            platform_info = "operating system is Linux (using GNU versions of utilities)"
+
+        full_context = f"\nAdditional Context/Feedback: {context}" if context else ""
+        prompt = (
+            f"Convert this natural language idea into a single, valid bash/shell command. "
+            f"The user's {platform_info}. "
+            f"Output ONLY the command, no markdown formatting, no backticks, no explanations. "
+            f"Idea: {query}{full_context}"
+        )
         data = {
             "model": model,
             "prompt": prompt,
             "stream": False
         }
-        req = urllib.request.Request(url, data=json.dumps(data).encode(\'utf-8\'), headers={\'Content-Type\': \'application/json\'})
-        with urllib.request.urlopen(req, timeout=15) as response:
-            result = json.loads(response.read().decode(\'utf-8\'))
-            command = result.get(\'response\', \'\').strip()
-            if command.startswith(\'```\') and command.endswith(\'```\'):
-                command = command.strip(\'`\').strip()
-                if command.startswith(\'bash\'):
+        req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'})
+        with urllib.request.urlopen(req, timeout=25) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            command = result.get('response', '').strip()
+            if command.startswith('```') and command.endswith('```'):
+                command = command.strip('`').strip()
+                if command.startswith('bash') or command.startswith('sh'):
                     command = command[4:].strip()
+                if command.startswith('zsh'):
+                    command = command[3:].strip()
             return command
-    except Exception:
+    except Exception as e:
+        print_err(f"Error querying Ollama: {e}")
         return None
 
 def save_config(config: Dict[str, Any]) -> None:
@@ -683,35 +698,72 @@ def run_ollama(query: str, model_override: Optional[str] = None):
     """
     Explicitly ask Ollama to generate and optionally run a command.
 
-    Prompts the user to run, copy, or cancel after generating the command.
-
-    Args:
-        query: The natural language idea to convert.
-        model_override: Optional model name to use instead of the default/cached selection.
+    Prompts the user to run, copy, refine, or cancel after generating the command.
     """
     model = get_ollama_model(model_override)
     if not model:
         print_err("No active Ollama models found. Is Ollama running?")
         return
-        
-    cmd = ask_ollama(query, model)
-    if cmd:
+    
+    current_query = query
+    refinement_context = None
+
+    while True:
+        if RICH_AVAILABLE:
+            with console.status(f"[bold cyan]Thinking...[/bold cyan] (using {model})", spinner="dots"):
+                cmd = ask_ollama(current_query, model, refinement_context)
+        else:
+            print_info(f"Thinking... (using {model})")
+            cmd = ask_ollama(current_query, model, refinement_context)
+
+        if not cmd:
+            print_err("Failed to generate a command.")
+            return
+
         if RICH_AVAILABLE:
             console.print(Panel(f"[bold green]{cmd}[/bold green]", 
                                title=f"🤖 AI Suggestion ({model})", 
                                box=box.ROUNDED, expand=False))
-            console.print("[dim]Press [bold]Enter[/bold] to run, [bold]Esc[/bold] to cancel, [bold]c[/bold] to copy...[/dim]")
+            console.print("[dim]Press [bold]Enter[/bold] to run, [bold]e[/bold] to edit/reprompt, [bold]c[/bold] to copy, [bold]Esc[/bold] to cancel...[/dim]")
         else:
             print(f"\n--- AI Suggestion ({model}) ---")
             print(f"  {cmd}")
-            print("Press Enter to run, Esc to cancel, or c to copy...")
+            print("Press Enter to run, e to edit/reprompt, c to copy, or Esc to cancel...")
 
         while True:
             ch = getch()
             if ch == '\r' or ch == '\n':
                 print_info(f"Running: {cmd}")
-                os.system(cmd)
+                ret = os.system(cmd)
+                if ret != 0:
+                    print_warn(f"Command failed (exit code {ret}).")
+                    if RICH_AVAILABLE:
+                        from rich.prompt import Prompt, Confirm
+                        if Confirm.ask("Do you want to self-heal and let the AI fix it?"):
+                            refinement_context = f"The previous command '{cmd}' failed with exit code {ret}."
+                            break
+                    else:
+                        choice = input("Self-heal and let AI fix it? (y/N): ").lower()
+                        if choice == 'y':
+                            refinement_context = f"The previous command '{cmd}' failed with exit code {ret}."
+                            break
                 return
+            elif ch.lower() == 'e':
+                if RICH_AVAILABLE:
+                    from rich.prompt import Prompt
+                    new_instruction = Prompt.ask("\n[bold cyan]Refinement instruction[/bold cyan] (e.g. 'only the home dir', 'use another tool')")
+                else:
+                    new_instruction = input("\nRefinement instruction: ")
+                
+                if new_instruction:
+                    refinement_context = f"Previous attempt: {cmd}. New instruction: {new_instruction}"
+                    break
+                else:
+                    print_info("Cancelled refinement.")
+                    if RICH_AVAILABLE:
+                        console.print("[dim]Press [bold]Enter[/bold] to run, [bold]e[/bold] to edit/reprompt, [bold]c[/bold] to copy, [bold]Esc[/bold] to cancel...[/dim]")
+                    else:
+                        print("Press Enter to run, e to edit/reprompt, c to copy, or Esc to cancel...")
             elif ch == '\x1b':  # Escape
                 print_info("Cancelled.")
                 return
@@ -719,8 +771,9 @@ def run_ollama(query: str, model_override: Optional[str] = None):
                 copy_to_clipboard(cmd)
                 print_info("Copied to clipboard.")
                 return
-    else:
-        print_err("Failed to generate a command.")
+        
+        # If we reach here, we are breaking from the inner loop to refine (continue outer loop)
+        continue
 
 def best_guess(query: str, registry: Dict[str, Dict[str, str]]) -> None:
     """
@@ -965,7 +1018,34 @@ def show_help():
             print(f"  {mod['id']:<20} {mod['desc']}")
 
 def show_module_info(module_id: str, registry: Dict[str, Dict[str, str]]):
-# ... (omitting for brevity in this specific tool call, will use full block below)
+    """Show aliases for a specific module."""
+    aliases = []
+    for key, data in registry.items():
+        if data.get("module") == module_id:
+            aliases.append((key, data["cmd"], data["desc"]))
+            
+    if not aliases:
+        print_err(f"Module '{module_id}' not found or empty.")
+        return
+        
+    aliases.sort(key=lambda x: x[0])
+    
+    if RICH_AVAILABLE:
+        console.print(Panel(f"[bold magenta]Module: {module_id}[/bold magenta]", expand=False, box=box.ROUNDED))
+        table = Table(box=box.SIMPLE_HEAD, show_header=True)
+        table.add_column("Alias", style="bold green")
+        table.add_column("Command", style="cyan")
+        table.add_column("Description", style="dim")
+        
+        for alias, cmd, desc in aliases:
+            table.add_row(alias, cmd, desc)
+            
+        console.print(table)
+    else:
+        print(f"--- Module: {module_id} ---")
+        for alias, cmd, desc in aliases:
+            print(f"  {alias:<15} {cmd:<30} {desc}")
+
 def main():
     args = sys.argv[1:]
     
@@ -984,7 +1064,7 @@ def main():
         show_module_info(args[1], registry)
     elif args[0] in ("-o", "-q"):
         if len(args) < 2:
-            print_err("Usage: G -q \'your idea\' [--model <model>]")
+            print_err("Usage: G -q 'your idea' [--model <model>]")
             sys.exit(1)
         
         query_parts = []

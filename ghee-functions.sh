@@ -25,7 +25,22 @@ _gg_err()  { echo -e "${_gg_red}[ERR]${_gg_reset} $*" >&2; }
 # GHEE CMD REGISTRY & PYTHON RUNNER
 # ============================================================================
 
-declare -A _GG_REGISTRY
+# Detect script directory
+if [ -n "$ZSH_VERSION" ]; then
+    export _GHEE_DIR="$(dirname "${(%):-%x}")"
+elif [ -n "$BASH_VERSION" ]; then
+    export _GHEE_DIR="$(dirname "${BASH_SOURCE[0]}")"
+else
+    export _GHEE_DIR="${PWD}"
+fi
+
+# Use `typeset -A` for zsh or `declare -A` for bash globally
+if [ -n "$ZSH_VERSION" ]; then
+    typeset -A _GG_REGISTRY
+else
+    declare -A _GG_REGISTRY 2>/dev/null || true
+fi
+
 _GG_CUSTOM_FILE="${HOME}/.ghee-custom"
 
 # Load custom aliases from ~/.ghee-custom as real shell aliases
@@ -53,7 +68,11 @@ _ghee_load_custom_aliases
 _ghee_check_conflicts() {
     local mod_dir="${_GHEE_DIR}/modules"
     [ -d "$mod_dir" ] || return
-    declare -A _seen
+    if [ -n "$ZSH_VERSION" ]; then
+        typeset -A _seen
+    else
+        declare -A _seen 2>/dev/null || true
+    fi
     local key mod
     for mod in "$mod_dir"/*.sh; do
         local modname="$(basename "$mod" .sh)"
@@ -67,14 +86,6 @@ _ghee_check_conflicts() {
     done
 }
 
-if [ -n "$ZSH_VERSION" ]; then
-    export _GHEE_DIR="$(dirname "${(%):-%x}")"
-elif [ -n "$BASH_VERSION" ]; then
-    export _GHEE_DIR="$(dirname "${BASH_SOURCE[0]}")"
-else
-    export _GHEE_DIR="${PWD}"
-fi
-
 g() {
     local script_dir="${_GHEE_DIR}"
     local _ghee_python
@@ -85,7 +96,10 @@ g() {
     else
         _ghee_python="python3"
     fi
+
+    # Run the Python CLI tool
     "$_ghee_python" "$script_dir/ghee.py" "$@"
+    
     # Reload custom aliases after adding one
     if [ "$1" = "-a" ]; then
         _ghee_load_custom_aliases
@@ -103,6 +117,7 @@ g() {
 if [ -n "$ZSH_VERSION" ]; then
     _ghee_completions() {
         local -a subcmds
+        # Added '-q' alias for '-o'
         subcmds=('-a:Add a custom shortcut' '-rm:Remove a custom shortcut' 'ls:List custom shortcuts' '-o:Ask Ollama AI' '-q:Ask Ollama AI' '--sync:Sync from Gist' 'info:Show module aliases' 'update:Self-update ghee' '--help:Show help')
         _describe 'G commands' subcmds
     }
@@ -111,6 +126,7 @@ if [ -n "$ZSH_VERSION" ]; then
 elif [ -n "$BASH_VERSION" ]; then
     _ghee_completions() {
         local cur="${COMP_WORDS[COMP_CWORD]}"
+        # Added '-q' alias for '-o'
         COMPREPLY=($(compgen -W "-a -rm ls -o -q --sync info update --help" -- "$cur"))
     }
     complete -F _ghee_completions G
