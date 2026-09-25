@@ -713,7 +713,7 @@ ghee/
 | `yrs` | `yarn start` | Yarn start |
 | `yrt` | `yarn test` | Yarn test |
 | `yga` | `yarn global add PACKAGE` | Yarn global install |
-| `pi` | `pnpm install` | pnpm install dependencies |
+| `pni` | `pnpm install` | pnpm install dependencies |
 | `pad` | `pnpm add PACKAGE` | pnpm add package |
 | `padd` | `pnpm add -D PACKAGE` | pnpm add dev dependency |
 | `prd` | `pnpm dev` | pnpm dev server |

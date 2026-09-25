@@ -29,7 +29,7 @@ _GG_REGISTRY["yrb"]="yarn build ||| Yarn build"]
 _GG_REGISTRY["yrs"]="yarn start ||| Yarn start"]
 _GG_REGISTRY["yrt"]="yarn test ||| Yarn test"]
 _GG_REGISTRY["yga"]="yarn global add PACKAGE ||| Yarn global install"]
-_GG_REGISTRY["pi"]="pnpm install ||| pnpm install dependencies"]
+_GG_REGISTRY["pni"]="pnpm install ||| pnpm install dependencies"]
 _GG_REGISTRY["pad"]="pnpm add PACKAGE ||| pnpm add package"]
 _GG_REGISTRY["padd"]="pnpm add -D PACKAGE ||| pnpm add dev dependency"]
 _GG_REGISTRY["prd"]="pnpm dev ||| pnpm dev server"]
@@ -106,8 +106,8 @@ alias yrt='yarn test'
 # 218. yarn global add
 alias yga='yarn global add'
 
-# 219. pnpm install
-alias pi='pnpm install'
+# 219. pnpm install (pni — avoids clashing with the popular `pi` harness)
+alias pni='pnpm install'
 
 # 220. pnpm add
 alias pad='pnpm add'

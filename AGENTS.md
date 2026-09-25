@@ -66,7 +66,7 @@ _GG_REGISTRY["dl"]="docker logs -f CONTAINER|||Follow container logs"
 | Cloud Deploy | `cloud_deploy.sh` | vdeploy, hdeploy, rdeploy, fldeploy... |
 | GitHub CLI | `github_cli.sh` | ghpr, ghil, ghrl, ghrun, ghclone... |
 | npm/yarn/pnpm | `npm_yarn_pnpm.sh` | ni, ns, nt, yr, ya, pni, pns... |
-| Python/pip/venv | `python_pip_venv.sh` | pi, pipu, venv, pytest... |
+| Python/pip/venv | `python_pip_venv.sh` | pip3i, pipu, venv, pytest... |
 | Rust/Go | `rust_go.sh` | cr, cb, gt, gi, gb... |
 | Redis | `redis.sh` | rd, rp, rk, rf... |
 | PostgreSQL | `postgresql.sh` | psqlc, psqll, psqlb... |

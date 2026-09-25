@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Rename `pi` → `pni` for `pnpm install` (avoids clash with the popular `pi` harness)
+
 ## v0.1.1 (2026-04-09)
 
 * Automated release update
