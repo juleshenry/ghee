@@ -7,3 +7,4 @@ recursive-include bin *
 recursive-include tools *
 include ghee-functions.sh
 include ghee.py
+include setup.py

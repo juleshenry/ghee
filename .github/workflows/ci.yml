@@ -30,3 +30,21 @@ jobs:
           file-install: false
       - name: Run Bats Tests
         run: bats tests/test_modules.bats
+
+  test-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build package
+        run: pip install build && python -m build
+      - name: Install wheel and smoke-test CLI
+        run: |
+          python -m venv /tmp/venv
+          /tmp/venv/bin/pip install dist/*.whl
+          cd /tmp
+          /tmp/venv/bin/ghee --help
+          /tmp/venv/bin/ghee info docker
