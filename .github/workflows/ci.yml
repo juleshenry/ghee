@@ -21,8 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Setup Bats
-        uses: bats-core/bats-action@v3
+        uses: bats-core/bats-action@4.0.0
         with:
-          bats-version: 1.9.0
+          bats-version: 1.11.0
+          support-install: false
+          assert-install: false
+          detik-install: false
+          file-install: false
       - name: Run Bats Tests
         run: bats tests/test_modules.bats
