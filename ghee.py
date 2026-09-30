@@ -711,6 +711,10 @@ def getch() -> str:
         import msvcrt
 
         return msvcrt.getch().decode("utf-8", "ignore")
+    elif not sys.stdin.isatty():
+        # Piped/non-interactive stdin: no raw mode; treat EOF as Escape
+        line = sys.stdin.readline()
+        return line[:1] if line else "\x1b"
     else:
         import termios, tty
 
