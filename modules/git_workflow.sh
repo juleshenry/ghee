@@ -6,38 +6,38 @@
 
 # Git Workflow
 
-_GG_REGISTRY["gg"]="git add . && git commit -m MSG && git push ||| Add all, commit, push in one shot"]
-_GG_REGISTRY["gclo"]="git clone https://github.com/USER/REPO ||| Clone a GitHub repo"]
-_GG_REGISTRY["jclo"]="git clone https://github.com/juleshenry/REPO ||| Clone a juleshenry repo"]
-_GG_REGISTRY["presto"]="git checkout --orphan && force-push ||| DESTRUCTIVE: wipe all git history"]
-_GG_REGISTRY["gwip"]="git add . && git commit -m 'wip: TIME' ||| Quick work-in-progress commit (no push)"]
-_GG_REGISTRY["gunwip"]="git reset --soft HEAD~1 ||| Undo last WIP commit, keep changes staged"]
-_GG_REGISTRY["gpristine"]="git reset --hard origin/BRANCH && git clean -fd ||| Hard-reset to match remote exactly"]
-_GG_REGISTRY["gtag"]="git tag -a TAG -m MSG && git push origin TAG ||| Create and push a git tag"]
-_GG_REGISTRY["ghprc"]="gh pr create --title TITLE --fill ||| Create a GitHub PR via gh CLI"]
-_GG_REGISTRY["gdiff-fancy"]="git diff --stat + git diff --shortstat ||| Pretty diff summary with stats"]
-_GG_REGISTRY["gacp"]="git add . && git commit -m MSG && git push ||| Add, commit, push (same as gg)"]
-_GG_REGISTRY["ginit"]="git init && git add . && git commit -m 'Initial commit' ||| Init repo with first commit"]
-_GG_REGISTRY["ghcl"]="git clone https://github.com/USER/REPO ||| Clone from GitHub"]
-_GG_REGISTRY["gbc"]="git checkout -b BRANCH ||| Create and switch to new branch"]
-_GG_REGISTRY["gbdall"]="git branch -d B && git push origin --delete B ||| Delete branch locally + remotely"]
-_GG_REGISTRY["gundo"]="git reset --soft HEAD~1 ||| Undo last commit, keep changes staged"]
-_GG_REGISTRY["gbs"]="git for-each-ref --sort=-committerdate ||| Show branches sorted by last modified"]
-_GG_REGISTRY["gquick"]="git add . && git commit -m 'Quick update: TIME' && git push ||| Commit+push with auto-timestamp"]
-_GG_REGISTRY["gchanged"]="git diff --name-only HEAD~N..HEAD ||| Show changed files in last N commits"]
-_GG_REGISTRY["gsearchtext"]="git log -S TEXT ||| Search for text across git history"]
-_GG_REGISTRY["gnew"]="git fetch origin && git checkout -b B origin/main ||| Create branch from origin/main"]
-_GG_REGISTRY["gupdateall"]="git fetch --all && git pull ||| Fetch all remotes and pull"]
-_GG_REGISTRY["greposize"]="git count-objects -vH ||| Show repo object storage size"]
-_GG_REGISTRY["gfilesize"]="git ls-tree -r -t -l --full-name HEAD | sort ||| List files by size in repo"]
-_GG_REGISTRY["glarge"]="git rev-list --objects --all | ... ||| Find N largest blobs in history"]
-_GG_REGISTRY["gsyncfork"]="git fetch upstream && merge upstream/main ||| Sync fork with upstream/main"]
-_GG_REGISTRY["gsquash"]="git reset --soft HEAD~N && git commit -m MSG ||| Squash last N commits"]
-_GG_REGISTRY["gstats"]="git shortlog -sn --all --no-merges ||| Commit count by author"]
-_GG_REGISTRY["garchive"]="git tag archive/B && delete branch ||| Archive a branch as a tag"]
-_GG_REGISTRY["galias"]="alias | grep '^g' ||| List all g* aliases"]
-_GG_REGISTRY["ginfo"]="repo name, branch, remote, last commit ||| Show repo info summary"]
-_GG_REGISTRY["gbackup"]="tar -czf backup.tar.gz . ||| Tar.gz backup of current repo"]
+_GG_REGISTRY["gg"]="git add . && git commit -m MSG && git push ||| Add all, commit, push in one shot"
+_GG_REGISTRY["gclo"]="git clone https://github.com/USER/REPO ||| Clone a GitHub repo"
+_GG_REGISTRY["jclo"]="git clone https://github.com/juleshenry/REPO ||| Clone a juleshenry repo"
+_GG_REGISTRY["presto"]="git checkout --orphan && force-push ||| DESTRUCTIVE: wipe all git history"
+_GG_REGISTRY["gwip"]="git add . && git commit -m 'wip: TIME' ||| Quick work-in-progress commit (no push)"
+_GG_REGISTRY["gunwip"]="git reset --soft HEAD~1 ||| Undo last WIP commit, keep changes staged"
+_GG_REGISTRY["gpristine"]="git reset --hard origin/BRANCH && git clean -fd ||| Hard-reset to match remote exactly"
+_GG_REGISTRY["gtag"]="git tag -a TAG -m MSG && git push origin TAG ||| Create and push a git tag"
+_GG_REGISTRY["ghprc"]="gh pr create --title TITLE --fill ||| Create a GitHub PR via gh CLI"
+_GG_REGISTRY["gdiff-fancy"]="git diff --stat + git diff --shortstat ||| Pretty diff summary with stats"
+_GG_REGISTRY["gacp"]="git add . && git commit -m MSG && git push ||| Add, commit, push (same as gg)"
+_GG_REGISTRY["ginit"]="git init && git add . && git commit -m 'Initial commit' ||| Init repo with first commit"
+_GG_REGISTRY["ghcl"]="git clone https://github.com/USER/REPO ||| Clone from GitHub"
+_GG_REGISTRY["gbc"]="git checkout -b BRANCH ||| Create and switch to new branch"
+_GG_REGISTRY["gbdall"]="git branch -d B && git push origin --delete B ||| Delete branch locally + remotely"
+_GG_REGISTRY["gundo"]="git reset --soft HEAD~1 ||| Undo last commit, keep changes staged"
+_GG_REGISTRY["gbs"]="git for-each-ref --sort=-committerdate ||| Show branches sorted by last modified"
+_GG_REGISTRY["gquick"]="git add . && git commit -m 'Quick update: TIME' && git push ||| Commit+push with auto-timestamp"
+_GG_REGISTRY["gchanged"]="git diff --name-only HEAD~N..HEAD ||| Show changed files in last N commits"
+_GG_REGISTRY["gsearchtext"]="git log -S TEXT ||| Search for text across git history"
+_GG_REGISTRY["gnew"]="git fetch origin && git checkout -b B origin/main ||| Create branch from origin/main"
+_GG_REGISTRY["gupdateall"]="git fetch --all && git pull ||| Fetch all remotes and pull"
+_GG_REGISTRY["greposize"]="git count-objects -vH ||| Show repo object storage size"
+_GG_REGISTRY["gfilesize"]="git ls-tree -r -t -l --full-name HEAD | sort ||| List files by size in repo"
+_GG_REGISTRY["glarge"]="git rev-list --objects --all | ... ||| Find N largest blobs in history"
+_GG_REGISTRY["gsyncfork"]="git fetch upstream && merge upstream/main ||| Sync fork with upstream/main"
+_GG_REGISTRY["gsquash"]="git reset --soft HEAD~N && git commit -m MSG ||| Squash last N commits"
+_GG_REGISTRY["gstats"]="git shortlog -sn --all --no-merges ||| Commit count by author"
+_GG_REGISTRY["garchive"]="git tag archive/B && delete branch ||| Archive a branch as a tag"
+_GG_REGISTRY["galias"]="alias | grep '^g' ||| List all g* aliases"
+_GG_REGISTRY["ginfo"]="repo name, branch, remote, last commit ||| Show repo info summary"
+_GG_REGISTRY["gbackup"]="tar -czf backup.tar.gz . ||| Tar.gz backup of current repo"
 
 # gg: git add, commit, and push in one command
 # Usage: gg "commit message"
@@ -322,3 +322,4 @@ gbackup() {
     echo "Backup created: ../$backup_name"
 }
 
+alias ghprc='gpr'

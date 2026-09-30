@@ -6,17 +6,17 @@
 
 # Terraform
 
-_GG_REGISTRY["tf"]="terraform ||| Terraform shortcut"]
-_GG_REGISTRY["tfi"]="terraform init ||| Initialize Terraform"]
-_GG_REGISTRY["tfp"]="terraform plan ||| Plan changes"]
-_GG_REGISTRY["tfa"]="terraform apply ||| Apply changes"]
-_GG_REGISTRY["tfaa"]="terraform apply -auto-approve ||| Apply without prompt"]
-_GG_REGISTRY["tfd"]="terraform destroy ||| Destroy infrastructure"]
-_GG_REGISTRY["tfs"]="terraform state list ||| List state resources"]
-_GG_REGISTRY["tfo"]="terraform output ||| Show outputs"]
-_GG_REGISTRY["tfv"]="terraform validate ||| Validate config"]
-_GG_REGISTRY["tff"]="terraform fmt -recursive ||| Format all .tf files"]
-_GG_REGISTRY["tfw"]="terraform workspace list ||| List workspaces"]
+_GG_REGISTRY["tf"]="terraform ||| Terraform shortcut"
+_GG_REGISTRY["tfi"]="terraform init ||| Initialize Terraform"
+_GG_REGISTRY["tfp"]="terraform plan ||| Plan changes"
+_GG_REGISTRY["tfa"]="terraform apply ||| Apply changes"
+_GG_REGISTRY["tfaa"]="terraform apply -auto-approve ||| Apply without prompt"
+_GG_REGISTRY["tfd"]="terraform destroy ||| Destroy infrastructure"
+_GG_REGISTRY["tfs"]="terraform state list ||| List state resources"
+_GG_REGISTRY["tfo"]="terraform output ||| Show outputs"
+_GG_REGISTRY["tfv"]="terraform validate ||| Validate config"
+_GG_REGISTRY["tff"]="terraform fmt -recursive ||| Format all .tf files"
+_GG_REGISTRY["tfw"]="terraform workspace list ||| List workspaces"
 
 # 178. Terraform shortcut
 alias tf='terraform'

@@ -6,24 +6,24 @@
 
 # Shell / File Utilities
 
-_GG_REGISTRY["h"]="history | grep TERM ||| Grep shell history"]
-_GG_REGISTRY["hl"]="history lucky match + exec ||| Run penultimate history match"]
-_GG_REGISTRY["dst"]="find . -name '.DS_Store' -exec rm ||| Remove .DS_Store files recursively"]
-_GG_REGISTRY["dust-kash"]="find . -name '*.kash' -exec rm ||| Remove .kash cache files recursively"]
-_GG_REGISTRY["date-file-maker"]="touch MM-DD-YY-HH:MM:SS.txt ||| Create a UTC-timestamped file"]
-_GG_REGISTRY["swap"]="mv file1 tmp && mv file2 file1 && mv tmp file2 ||| Swap names of two files"]
-_GG_REGISTRY["mkcd"]="mkdir -p DIR && cd DIR ||| mkdir + cd in one step"]
-_GG_REGISTRY["extract"]="tar/unzip/7z/etc ||| Universal archive extractor"]
-_GG_REGISTRY["tre"]="tree -I '.git|node_modules' ||| tree with junk dirs ignored"]
-_GG_REGISTRY["ports"]="lsof -iTCP -sTCP:LISTEN ||| Show listening TCP ports"]
-_GG_REGISTRY["sizeof"]="du -sh PATH ||| Human-readable size of file/dir"]
-_GG_REGISTRY["blk"]="python3 -m black FILE ||| Run Python Black formatter"]
-_GG_REGISTRY["serve"]="python3 -m http.server PORT ||| Quick HTTP server"]
-_GG_REGISTRY["jql"]="jq -C '.' FILE | less -R ||| Pretty-print JSON with less"]
-_GG_REGISTRY["rmdstore"]="find . -name '.DS_Store' -delete ||| Remove .DS_Store with feedback"]
-_GG_REGISTRY["rmnodemodules"]="find+rm node_modules ||| Interactively remove node_modules dirs"]
-_GG_REGISTRY["countext"]="find . -type f | sed/sort/uniq ||| Count files by extension"]
-_GG_REGISTRY["findlarge"]="find . -type f -size +N ||| Find files larger than N"]
+_GG_REGISTRY["h"]="history | grep TERM ||| Grep shell history"
+_GG_REGISTRY["hl"]="history lucky match + exec ||| Run penultimate history match"
+_GG_REGISTRY["dst"]="find . -name '.DS_Store' -exec rm ||| Remove .DS_Store files recursively"
+_GG_REGISTRY["dust-kash"]="find . -name '*.kash' -exec rm ||| Remove .kash cache files recursively"
+_GG_REGISTRY["date-file-maker"]="touch MM-DD-YY-HH:MM:SS.txt ||| Create a UTC-timestamped file"
+_GG_REGISTRY["swap"]="mv file1 tmp && mv file2 file1 && mv tmp file2 ||| Swap names of two files"
+_GG_REGISTRY["mkcd"]="mkdir -p DIR && cd DIR ||| mkdir + cd in one step"
+_GG_REGISTRY["extract"]="tar/unzip/7z/etc ||| Universal archive extractor"
+_GG_REGISTRY["tre"]="tree -I '.git|node_modules' ||| tree with junk dirs ignored"
+_GG_REGISTRY["ports"]="lsof -iTCP -sTCP:LISTEN ||| Show listening TCP ports"
+_GG_REGISTRY["sizeof"]="du -sh PATH ||| Human-readable size of file/dir"
+_GG_REGISTRY["blk"]="python3 -m black FILE ||| Run Python Black formatter"
+_GG_REGISTRY["serve"]="python3 -m http.server PORT ||| Quick HTTP server"
+_GG_REGISTRY["jql"]="jq -C '.' FILE | less -R ||| Pretty-print JSON with less"
+_GG_REGISTRY["rmdstore"]="find . -name '.DS_Store' -delete ||| Remove .DS_Store with feedback"
+_GG_REGISTRY["rmnodemodules"]="find+rm node_modules ||| Interactively remove node_modules dirs"
+_GG_REGISTRY["countext"]="find . -type f | sed/sort/uniq ||| Count files by extension"
+_GG_REGISTRY["findlarge"]="find . -type f -size +N ||| Find files larger than N"
 
 # h: grep shell history
 # Usage: h searchterm

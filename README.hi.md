@@ -154,7 +154,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | पोर्ट 11434 पर Ollama API सर्वर शुरू करें |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | curl के माध्यम से लोकल Ollama मॉडल से चैट करें |
 | `tokcount` | `python3 -c tiktoken count tokens` | स्ट्रिंग में टोकन गिनें (tiktoken आवश्यक) |
-| `openai` | `curl api.openai.com/v1/chat/completions` | curl के माध्यम से OpenAI API को प्रॉम्प्ट भेजें |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | curl के माध्यम से OpenAI API को प्रॉम्प्ट भेजें |
 
 ### Docker
 
@@ -171,7 +171,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | कंटेनर लॉग फ़ॉलो करें |
 | `dstop` | `docker stop \$(docker ps -aq)` | सभी कंटेनर बंद करें |
 | `dprune` | `docker system prune -af` | सब कुछ प्रून करें (कंटेनर, इमेज, नेटवर्क) |
-| `dc` | `docker compose` | Docker Compose शॉर्टकट |
+| `dcom` | `docker compose` | Docker Compose शॉर्टकट |
 | `dcu` | `docker compose up -d` | Compose अप (डिटैच्ड) |
 | `dcd` | `docker compose down` | Compose डाउन |
 | `dcb` | `docker compose build` | Compose बिल्ड |
@@ -266,7 +266,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | बदली गई फ़ाइलों की सूची |
 | `gdstat` | `git diff --name-status` | स्टेटस के साथ बदली गई फ़ाइलें |
 | `gdlc` | `git diff HEAD^ HEAD` | आखिरी कमिट का डिफ |
-| `gls` | `git ls-files` | ट्रैक्ड फ़ाइलों की सूची |
+| `glst` | `git ls-files` | ट्रैक्ड फ़ाइलों की सूची |
 | `glsu` | `git ls-files --others` | अनट्रैक्ड फ़ाइलों की सूची |
 | `gcontrib` | `git shortlog -sn` | योगदानकर्ता दिखाएं |
 | `gfh` | `git log --follow -p -- FILE` | फ़ाइल का पूरा इतिहास |
@@ -299,7 +299,7 @@ ghee/
 | `gcf` | `git clean -f` | अनट्रैक्ड फ़ाइलें क्लीन |
 | `gcfd` | `git clean -fd` | अनट्रैक्ड फ़ाइलें + डायरेक्टरी क्लीन |
 | `gdis` | `git checkout -- FILE` | फ़ाइल में बदलाव खारिज |
-| `gcp` | `git cherry-pick HASH` | कमिट चुनें |
+| `gcpy` | `git cherry-pick HASH` | कमिट चुनें |
 | `gcpc` | `git cherry-pick --continue` | चेरी-पिक जारी रखें |
 | `gcpa` | `git cherry-pick --abort` | चेरी-पिक एबॉर्ट |
 | `grbi` | `git rebase -i HASH` | इंटरएक्टिव रीबेस |
@@ -308,7 +308,7 @@ ghee/
 | `grbs` | `git rebase --skip` | रीबेस स्टेप स्किप |
 | `gt` | `git tag` | टैग दिखाएं |
 | `gta` | `git tag -a TAG` | एनोटेटेड टैग बनाएं |
-| `gpt` | `git push --tags` | सभी टैग पुश |
+| `gpht` | `git push --tags` | सभी टैग पुश |
 
 ### Github Cli
 
@@ -404,7 +404,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | Vercel प्रोड डिप्लॉय |
 | `vdev` | `vercel dev` | Vercel लोकल डेव |
-| `venv` | `vercel env pull .env.local` | Vercel env लोकल पुल |
+| `venvpull` | `vercel env pull .env.local` | Vercel env लोकल पुल |
 | `hdeploy` | `git push heroku main` | Heroku डिप्लॉय |
 | `hlogs` | `heroku logs --tail` | Heroku लॉग |
 | `hbash` | `heroku run bash` | Heroku bash |
@@ -477,5 +477,5 @@ ghee/
 
 | एलियास | रन | विवरण |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | Mac स्लीप रोकें |
+| `caf` | `caffeinate -d` | Mac स्लीप रोकें |
 | `hidefiles` | `defaults write com.apple.finder ... [कटा हुआ]

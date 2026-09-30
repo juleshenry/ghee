@@ -154,7 +154,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | 在端口 11434 启动 Ollama API 服务器 |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | 通过 curl 与本地 Ollama 模型聊天 |
 | `tokcount` | `python3 -c tiktoken count tokens` | 计算字符串中的 token 数（需要 tiktoken） |
-| `openai` | `curl api.openai.com/v1/chat/completions` | 通过 curl 向 OpenAI API 发送提示 |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | 通过 curl 向 OpenAI API 发送提示 |
 
 ### Docker
 
@@ -171,7 +171,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | 跟踪容器日志 |
 | `dstop` | `docker stop \$(docker ps -aq)` | 停止所有容器 |
 | `dprune` | `docker system prune -af` | 清理所有（容器、镜像、网络） |
-| `dc` | `docker compose` | Docker Compose 快捷方式 |
+| `dcom` | `docker compose` | Docker Compose 快捷方式 |
 | `dcu` | `docker compose up -d` | Compose 启动（后台模式） |
 | `dcd` | `docker compose down` | Compose 停止 |
 | `dcb` | `docker compose build` | Compose 构建 |
@@ -266,7 +266,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | 列出更改的文件名 |
 | `gdstat` | `git diff --name-status` | 更改的文件及状态 |
 | `gdlc` | `git diff HEAD^ HEAD` | 上次提交的差异 |
-| `gls` | `git ls-files` | 列出跟踪的文件 |
+| `glst` | `git ls-files` | 列出跟踪的文件 |
 | `glsu` | `git ls-files --others` | 列出未跟踪的文件 |
 | `gcontrib` | `git shortlog -sn` | 显示贡献者 |
 | `gfh` | `git log --follow -p -- FILE` | 显示文件的完整历史 |
@@ -299,7 +299,7 @@ ghee/
 | `gcf` | `git clean -f` | 清理未跟踪的文件 |
 | `gcfd` | `git clean -fd` | 清理未跟踪的文件和目录 |
 | `gdis` | `git checkout -- FILE` | 丢弃文件中的更改 |
-| `gcp` | `git cherry-pick HASH` | 挑选提交 |
+| `gcpy` | `git cherry-pick HASH` | 挑选提交 |
 | `gcpc` | `git cherry-pick --continue` | 继续挑选 |
 | `gcpa` | `git cherry-pick --abort` | 中止挑选 |
 | `grbi` | `git rebase -i HASH` | 交互式变基 |
@@ -308,7 +308,7 @@ ghee/
 | `grbs` | `git rebase --skip` | 跳过变基步骤 |
 | `gt` | `git tag` | 显示标签 |
 | `gta` | `git tag -a TAG` | 创建带注释的标签 |
-| `gpt` | `git push --tags` | 推送所有标签 |
+| `gpht` | `git push --tags` | 推送所有标签 |
 
 ### Github Cli
 
@@ -404,7 +404,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | 部署到 Vercel 生产环境 |
 | `vdev` | `vercel dev` | 启动本地 Vercel 开发服务器 |
-| `venv` | `vercel env pull .env.local` | 拉取 Vercel 环境变量到本地 |
+| `venvpull` | `vercel env pull .env.local` | 拉取 Vercel 环境变量到本地 |
 | `hdeploy` | `git push heroku main` | 通过 git 部署到 Heroku |
 | `hlogs` | `heroku logs --tail` | 跟踪 Heroku 应用日志 |
 | `hbash` | `heroku run bash` | 在 Heroku dyno 上打开 bash |
@@ -477,5 +477,5 @@ ghee/
 
 | 别名 | 执行 | 描述 |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | 防止 Mac 进入睡眠 |
+| `caf` | `caffeinate -d` | 防止 Mac 进入睡眠 |
 | `hidefiles` | `defaults write com.apple.finder ... [截断]

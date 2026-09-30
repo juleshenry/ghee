@@ -6,21 +6,21 @@
 
 # AWS CLI
 
-_GG_REGISTRY["awsid"]="aws sts get-caller-identity ||| Show current AWS identity"]
-_GG_REGISTRY["awsls"]="aws s3 ls ||| List S3 buckets"]
-_GG_REGISTRY["awscp"]="aws s3 cp FILE s3://BUCKET/ ||| Copy file to S3"]
-_GG_REGISTRY["awssync"]="aws s3 sync DIR s3://BUCKET/ ||| Sync directory to S3"]
-_GG_REGISTRY["awsec2"]="aws ec2 describe-instances ||| List EC2 instances"]
-_GG_REGISTRY["awsecr"]="aws ecr get-login-password | docker login ||| ECR docker login"]
-_GG_REGISTRY["awslam"]="aws lambda list-functions ||| List Lambda functions"]
-_GG_REGISTRY["awslog"]="aws logs tail LOG_GROUP --follow ||| Tail CloudWatch logs"]
-_GG_REGISTRY["awseb"]="aws elasticbeanstalk describe-environments ||| List EB environments"]
-_GG_REGISTRY["awscf"]="aws cloudformation list-stacks ||| List CloudFormation stacks"]
-_GG_REGISTRY["awseks"]="aws eks list-clusters ||| List EKS clusters"]
-_GG_REGISTRY["awsrds"]="aws rds describe-db-instances ||| List RDS instances"]
-_GG_REGISTRY["awsssm"]="aws ssm start-session --target INSTANCE ||| SSM session to instance"]
-_GG_REGISTRY["awswho"]="aws iam get-user ||| Show current IAM user"]
-_GG_REGISTRY["awsregions"]="aws ec2 describe-regions --output table ||| List all AWS regions"]
+_GG_REGISTRY["awsid"]="aws sts get-caller-identity ||| Show current AWS identity"
+_GG_REGISTRY["awsls"]="aws s3 ls ||| List S3 buckets"
+_GG_REGISTRY["awscp"]="aws s3 cp FILE s3://BUCKET/ ||| Copy file to S3"
+_GG_REGISTRY["awssync"]="aws s3 sync DIR s3://BUCKET/ ||| Sync directory to S3"
+_GG_REGISTRY["awsec2"]="aws ec2 describe-instances ||| List EC2 instances"
+_GG_REGISTRY["awsecr"]="aws ecr get-login-password | docker login ||| ECR docker login"
+_GG_REGISTRY["awslam"]="aws lambda list-functions ||| List Lambda functions"
+_GG_REGISTRY["awslog"]="aws logs tail LOG_GROUP --follow ||| Tail CloudWatch logs"
+_GG_REGISTRY["awseb"]="aws elasticbeanstalk describe-environments ||| List EB environments"
+_GG_REGISTRY["awscf"]="aws cloudformation list-stacks ||| List CloudFormation stacks"
+_GG_REGISTRY["awseks"]="aws eks list-clusters ||| List EKS clusters"
+_GG_REGISTRY["awsrds"]="aws rds describe-db-instances ||| List RDS instances"
+_GG_REGISTRY["awsssm"]="aws ssm start-session --target INSTANCE ||| SSM session to instance"
+_GG_REGISTRY["awswho"]="aws iam get-user ||| Show current IAM user"
+_GG_REGISTRY["awsregions"]="aws ec2 describe-regions --output table ||| List all AWS regions"
 
 # 148. Show current AWS identity
 alias awsid='aws sts get-caller-identity'

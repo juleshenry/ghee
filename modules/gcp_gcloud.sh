@@ -6,21 +6,21 @@
 
 # GCP / gcloud
 
-_GG_REGISTRY["gcpid"]="gcloud config get-value project ||| Show current GCP project"]
-_GG_REGISTRY["gcpset"]="gcloud config set project PROJECT ||| Set GCP project"]
-_GG_REGISTRY["gcpls"]="gcloud compute instances list ||| List GCE instances"]
-_GG_REGISTRY["gcpssh"]="gcloud compute ssh INSTANCE ||| SSH into GCE instance"]
-_GG_REGISTRY["gcpgke"]="gcloud container clusters list ||| List GKE clusters"]
-_GG_REGISTRY["gcpgkecreds"]="gcloud container clusters get-credentials CLUSTER ||| Get GKE kubeconfig"]
-_GG_REGISTRY["gcpbq"]="bq ls ||| List BigQuery datasets"]
-_GG_REGISTRY["gcpgsutil"]="gsutil ls ||| List GCS buckets"]
-_GG_REGISTRY["gcpcp"]="gsutil cp FILE gs://BUCKET/ ||| Copy file to GCS"]
-_GG_REGISTRY["gcpsync"]="gsutil -m rsync -r DIR gs://BUCKET/ ||| Sync directory to GCS"]
-_GG_REGISTRY["gcprun"]="gcloud run services list ||| List Cloud Run services"]
-_GG_REGISTRY["gcpfn"]="gcloud functions list ||| List Cloud Functions"]
-_GG_REGISTRY["gcpsql"]="gcloud sql instances list ||| List Cloud SQL instances"]
-_GG_REGISTRY["gcplog"]="gcloud logging read FILTER --limit=50 ||| Read GCP logs"]
-_GG_REGISTRY["gcpauth"]="gcloud auth login ||| Authenticate with GCP"]
+_GG_REGISTRY["gcpid"]="gcloud config get-value project ||| Show current GCP project"
+_GG_REGISTRY["gcpset"]="gcloud config set project PROJECT ||| Set GCP project"
+_GG_REGISTRY["gcpls"]="gcloud compute instances list ||| List GCE instances"
+_GG_REGISTRY["gcpssh"]="gcloud compute ssh INSTANCE ||| SSH into GCE instance"
+_GG_REGISTRY["gcpgke"]="gcloud container clusters list ||| List GKE clusters"
+_GG_REGISTRY["gcpgkecreds"]="gcloud container clusters get-credentials CLUSTER ||| Get GKE kubeconfig"
+_GG_REGISTRY["gcpbq"]="bq ls ||| List BigQuery datasets"
+_GG_REGISTRY["gcpgsutil"]="gsutil ls ||| List GCS buckets"
+_GG_REGISTRY["gcpcp"]="gsutil cp FILE gs://BUCKET/ ||| Copy file to GCS"
+_GG_REGISTRY["gcpsync"]="gsutil -m rsync -r DIR gs://BUCKET/ ||| Sync directory to GCS"
+_GG_REGISTRY["gcprun"]="gcloud run services list ||| List Cloud Run services"
+_GG_REGISTRY["gcpfn"]="gcloud functions list ||| List Cloud Functions"
+_GG_REGISTRY["gcpsql"]="gcloud sql instances list ||| List Cloud SQL instances"
+_GG_REGISTRY["gcplog"]="gcloud logging read FILTER --limit=50 ||| Read GCP logs"
+_GG_REGISTRY["gcpauth"]="gcloud auth login ||| Authenticate with GCP"
 
 # 163. Show current GCP project
 alias gcpid='gcloud config get-value project'

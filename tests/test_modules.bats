@@ -23,3 +23,24 @@
     [ "$status" -eq 0 ]
   done
 }
+
+@test "Registry entries have no trailing characters after the closing quote" {
+  run grep -nE '^_GG_REGISTRY\[.*"[^"]+$' modules/*.sh
+  [ "$status" -eq 1 ]
+}
+
+@test "Every registry key is defined as an alias or function" {
+  all="$(cat modules/*.sh)"
+  missing=""
+  for f in modules/*.sh; do
+    for k in $(grep -o '_GG_REGISTRY\["[^"]*"\]' "$f" | sed 's/_GG_REGISTRY\["//;s/"\]//'); do
+      grep -qE "^[[:space:]]*(alias ${k}=|${k}[[:space:]]*\(\)|function ${k})" <<<"$all" || missing="$missing $f:$k"
+    done
+  done
+  [ -z "$missing" ] || { echo "Undefined registry keys:$missing"; false; }
+}
+
+@test "All modules source cleanly together" {
+  run bash -c 'source ./ghee-functions.sh && for m in modules/*.sh; do source "$m" || exit 1; done'
+  [ "$status" -eq 0 ]
+}

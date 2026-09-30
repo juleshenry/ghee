@@ -154,7 +154,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | 포트 11434에서 Ollama API 서버 시작 |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | curl로 로컬 Ollama 모델과 채팅 |
 | `tokcount` | `python3 -c tiktoken count tokens` | 문자열에서 토큰 수 세기 (tiktoken 필요) |
-| `openai` | `curl api.openai.com/v1/chat/completions` | curl로 OpenAI API에 프롬프트 전송 |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | curl로 OpenAI API에 프롬프트 전송 |
 
 ### Docker
 
@@ -171,7 +171,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | 컨테이너 로그 따라보기 |
 | `dstop` | `docker stop \$(docker ps -aq)` | 모든 컨테이너 중지 |
 | `dprune` | `docker system prune -af` | 모든 것 정리 (컨테이너, 이미지, 네트워크) |
-| `dc` | `docker compose` | Docker Compose 단축키 |
+| `dcom` | `docker compose` | Docker Compose 단축키 |
 | `dcu` | `docker compose up -d` | Compose 시작 (백그라운드) |
 | `dcd` | `docker compose down` | Compose 중지 |
 | `dcb` | `docker compose build` | Compose 빌드 |
@@ -266,7 +266,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | 변경된 파일명 목록 |
 | `gdstat` | `git diff --name-status` | 상태 포함 변경 파일 |
 | `gdlc` | `git diff HEAD^ HEAD` | 마지막 커밋 차이 |
-| `gls` | `git ls-files` | 추적 파일 목록 |
+| `glst` | `git ls-files` | 추적 파일 목록 |
 | `glsu` | `git ls-files --others` | 추적되지 않은 파일 목록 |
 | `gcontrib` | `git shortlog -sn` | 기여자 표시 |
 | `gfh` | `git log --follow -p -- FILE` | 파일 전체 이력 표시 |
@@ -299,7 +299,7 @@ ghee/
 | `gcf` | `git clean -f` | 추적되지 않은 파일 정리 |
 | `gcfd` | `git clean -fd` | 추적되지 않은 파일 + 디렉터리 정리 |
 | `gdis` | `git checkout -- FILE` | 파일 변경 버리기 |
-| `gcp` | `git cherry-pick HASH` | 커밋 체리픽 |
+| `gcpy` | `git cherry-pick HASH` | 커밋 체리픽 |
 | `gcpc` | `git cherry-pick --continue` | 체리픽 계속 |
 | `gcpa` | `git cherry-pick --abort` | 체리픽 중단 |
 | `grbi` | `git rebase -i HASH` | 인터랙티브 리베이스 |
@@ -308,7 +308,7 @@ ghee/
 | `grbs` | `git rebase --skip` | 리베이스 단계 건너뛰기 |
 | `gt` | `git tag` | 태그 표시 |
 | `gta` | `git tag -a TAG` | 주석 태그 생성 |
-| `gpt` | `git push --tags` | 모든 태그 푸시 |
+| `gpht` | `git push --tags` | 모든 태그 푸시 |
 
 ### Github Cli
 
@@ -404,7 +404,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | Vercel 프로덕션 배포 |
 | `vdev` | `vercel dev` | Vercel 로컬 개발 |
-| `venv` | `vercel env pull .env.local` | Vercel 환경 변수 풀 |
+| `venvpull` | `vercel env pull .env.local` | Vercel 환경 변수 풀 |
 | `hdeploy` | `git push heroku main` | Heroku 배포 |
 | `hlogs` | `heroku logs --tail` | Heroku 로그 |
 | `hbash` | `heroku run bash` | Heroku 셸 |
@@ -477,5 +477,5 @@ ghee/
 
 | 별칭 | 실행 | 설명 |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | Mac 절전 방지 |
+| `caf` | `caffeinate -d` | Mac 절전 방지 |
 | `hidefiles` | `defaults write com.apple.finder ... [잘림]

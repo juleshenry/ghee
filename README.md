@@ -172,7 +172,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | Start Ollama API server on port 11434 |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | Chat with local Ollama model via curl |
 | `tokcount` | `python3 -c tiktoken count tokens` | Count tokens in a string (requires tiktoken) |
-| `openai` | `curl api.openai.com/v1/chat/completions` | Send a prompt to OpenAI API via curl |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | Send a prompt to OpenAI API via curl |
 
 ### Aws Cli
 

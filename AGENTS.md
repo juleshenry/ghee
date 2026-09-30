@@ -58,7 +58,7 @@ _GG_REGISTRY["dl"]="docker logs -f CONTAINER|||Follow container logs"
 |--------|------|--------|
 | Git Aliases | `git_aliases.sh` | gs, gc, gp, gl, gb, gco, gd, gst, gr, gcl, gt... (90+ aliases) |
 | Git Workflow | `git_workflow.sh` | gg, gwip, gpr, ginit, gsquash, gsyncfork... |
-| Docker | `docker.sh` | dps, dc, dcu, dcd, dprune, dbuild... |
+| Docker | `docker.sh` | dps, dcom, dcu, dcd, dprune, dbuild... |
 | Kubernetes | `kubernetes.sh` | k, kgp, kex, kaf, klog, kscale... |
 | AWS CLI | `aws_cli.sh` | awsid, awsls, awsec2, awslog, awseks... |
 | GCP gcloud | `gcp_gcloud.sh` | gcpid, gcpls, gcpssh, gcpgke... |
@@ -75,7 +75,7 @@ _GG_REGISTRY["dl"]="docker logs -f CONTAINER|||Follow container logs"
 | systemd | `systemd_services.sh` | sc, sr, ss, se, jc, jf... |
 | Networking | `networking.sh` | myip, dns, ping, speed... |
 | Cybersecurity | `cybersecurity_network_recon.sh` | nmap, ncl, sslcheck, genpw... |
-| AI/LLM | `ai_llm.sh` | ollama, ollmls, tokcount, openai... |
+| AI/LLM | `ai_llm.sh` | ollama, ollmls, tokcount, openai_ask... |
 | Media | `media_tools.sh` | ff, ffprobe, ytdl, convert... |
 | Data Tools | `data_tools.sh` | jqpp, yamlcheck, csvhead... |
 | macOS | `macos_power_tools.sh` | caffeinate, hidefiles, showfiles... |

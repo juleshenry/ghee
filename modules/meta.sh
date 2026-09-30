@@ -6,8 +6,8 @@
 
 # Meta
 
-_GG_REGISTRY["G"]="G [cmd] or G -a <alias> <cmd> ||| Ghee hot-doc shell"]
-_GG_REGISTRY["gheelp"]="print reference table ||| Full command reference"]
+_GG_REGISTRY["G"]="G [cmd] or G -a <alias> <cmd> ||| Ghee hot-doc shell"
+_GG_REGISTRY["gheelp"]="print reference table ||| Full command reference"
 
 G() {
     local script_dir="${_GHEE_DIR}"

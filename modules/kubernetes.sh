@@ -6,32 +6,32 @@
 
 # Kubernetes
 
-_GG_REGISTRY["k"]="kubectl ||| kubectl shortcut"]
-_GG_REGISTRY["kgp"]="kubectl get pods ||| List pods"]
-_GG_REGISTRY["kgpa"]="kubectl get pods --all-namespaces ||| List all pods across namespaces"]
-_GG_REGISTRY["kgs"]="kubectl get svc ||| List services"]
-_GG_REGISTRY["kgn"]="kubectl get nodes ||| List nodes"]
-_GG_REGISTRY["kgd"]="kubectl get deployments ||| List deployments"]
-_GG_REGISTRY["kgi"]="kubectl get ingress ||| List ingresses"]
-_GG_REGISTRY["kgns"]="kubectl get namespaces ||| List namespaces"]
-_GG_REGISTRY["kga"]="kubectl get all ||| List all resources"]
-_GG_REGISTRY["kdp"]="kubectl describe pod POD ||| Describe a pod"]
-_GG_REGISTRY["kds"]="kubectl describe svc SVC ||| Describe a service"]
-_GG_REGISTRY["kdd"]="kubectl describe deployment DEP ||| Describe a deployment"]
-_GG_REGISTRY["kl"]="kubectl logs -f POD ||| Follow pod logs"]
-_GG_REGISTRY["klp"]="kubectl logs -f POD -p ||| Previous pod logs"]
-_GG_REGISTRY["kex"]="kubectl exec -it POD -- bash ||| Exec into a pod"]
-_GG_REGISTRY["kaf"]="kubectl apply -f FILE ||| Apply a manifest"]
-_GG_REGISTRY["kdf"]="kubectl delete -f FILE ||| Delete from manifest"]
-_GG_REGISTRY["kctx"]="kubectl config get-contexts ||| Show kube contexts"]
-_GG_REGISTRY["kuse"]="kubectl config use-context CTX ||| Switch kube context"]
-_GG_REGISTRY["kns"]="kubectl config set-context --current --namespace=NS ||| Set default namespace"]
-_GG_REGISTRY["kpf"]="kubectl port-forward POD LOCAL:REMOTE ||| Port-forward to a pod"]
-_GG_REGISTRY["kscale"]="kubectl scale deployment DEP --replicas=N ||| Scale a deployment"]
-_GG_REGISTRY["krollout"]="kubectl rollout status deployment DEP ||| Check rollout status"]
-_GG_REGISTRY["krestart"]="kubectl rollout restart deployment DEP ||| Restart a deployment"]
-_GG_REGISTRY["ktop"]="kubectl top pods ||| Pod resource usage"]
-_GG_REGISTRY["ktopn"]="kubectl top nodes ||| Node resource usage"]
+_GG_REGISTRY["k"]="kubectl ||| kubectl shortcut"
+_GG_REGISTRY["kgp"]="kubectl get pods ||| List pods"
+_GG_REGISTRY["kgpa"]="kubectl get pods --all-namespaces ||| List all pods across namespaces"
+_GG_REGISTRY["kgs"]="kubectl get svc ||| List services"
+_GG_REGISTRY["kgn"]="kubectl get nodes ||| List nodes"
+_GG_REGISTRY["kgd"]="kubectl get deployments ||| List deployments"
+_GG_REGISTRY["kgi"]="kubectl get ingress ||| List ingresses"
+_GG_REGISTRY["kgns"]="kubectl get namespaces ||| List namespaces"
+_GG_REGISTRY["kga"]="kubectl get all ||| List all resources"
+_GG_REGISTRY["kdp"]="kubectl describe pod POD ||| Describe a pod"
+_GG_REGISTRY["kds"]="kubectl describe svc SVC ||| Describe a service"
+_GG_REGISTRY["kdd"]="kubectl describe deployment DEP ||| Describe a deployment"
+_GG_REGISTRY["kl"]="kubectl logs -f POD ||| Follow pod logs"
+_GG_REGISTRY["klp"]="kubectl logs -f POD -p ||| Previous pod logs"
+_GG_REGISTRY["kex"]="kubectl exec -it POD -- bash ||| Exec into a pod"
+_GG_REGISTRY["kaf"]="kubectl apply -f FILE ||| Apply a manifest"
+_GG_REGISTRY["kdf"]="kubectl delete -f FILE ||| Delete from manifest"
+_GG_REGISTRY["kctx"]="kubectl config get-contexts ||| Show kube contexts"
+_GG_REGISTRY["kuse"]="kubectl config use-context CTX ||| Switch kube context"
+_GG_REGISTRY["kns"]="kubectl config set-context --current --namespace=NS ||| Set default namespace"
+_GG_REGISTRY["kpf"]="kubectl port-forward POD LOCAL:REMOTE ||| Port-forward to a pod"
+_GG_REGISTRY["kscale"]="kubectl scale deployment DEP --replicas=N ||| Scale a deployment"
+_GG_REGISTRY["krollout"]="kubectl rollout status deployment DEP ||| Check rollout status"
+_GG_REGISTRY["krestart"]="kubectl rollout restart deployment DEP ||| Restart a deployment"
+_GG_REGISTRY["ktop"]="kubectl top pods ||| Pod resource usage"
+_GG_REGISTRY["ktopn"]="kubectl top nodes ||| Node resource usage"
 
 # 122. kubectl shortcut
 alias k='kubectl'

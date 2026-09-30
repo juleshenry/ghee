@@ -15,7 +15,7 @@ _GG_REGISTRY["copycwd"]="pwd | tr -d '\n' | pbcopy ||| Copy current directory pa
 _GG_REGISTRY["locks"]="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend ||| Lock mac screen immediately"
 _GG_REGISTRY["emptytrash"]="rm -rf ~/.Trash/* ||| Empty the Trash immediately"
 
-alias caffeinate='caffeinate -d'
+alias caf='caffeinate -d'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder'
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
 alias flushui='killall Dock; killall Finder'

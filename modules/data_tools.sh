@@ -72,3 +72,21 @@ csvcount() {
     if [ -z "$1" ]; then echo "Usage: csvcount <file.csv>"; return 1; fi
     echo "$(($(wc -l < "$1") - 1)) rows"
 }
+
+# Map/extract a field from a JSON array: jqm FIELD [file]
+jqm() {
+    if [ -z "$1" ]; then echo "Usage: jqm <field> [file]"; return 1; fi
+    jq "map(.$1)" "${@:2}"
+}
+
+# Filter a JSON array by field value: jqsel KEY VALUE [file]
+jqsel() {
+    if [ -z "$2" ]; then echo "Usage: jqsel <key> <value> [file]"; return 1; fi
+    jq --arg v "$2" ".[] | select((.$1|tostring) == \$v)" "${@:3}"
+}
+
+# Sort a JSON array by a key: sortjson KEY [file]
+sortjson() {
+    if [ -z "$1" ]; then echo "Usage: sortjson <key> [file]"; return 1; fi
+    jq "sort_by(.$1)" "${@:2}"
+}

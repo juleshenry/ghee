@@ -6,25 +6,25 @@
 
 # Networking
 
-_GG_REGISTRY["curlt"]="curl with timing breakdown ||| curl with DNS/connect/TLS timing"]
-_GG_REGISTRY["curlh"]="curl -I URL ||| Show HTTP response headers"]
-_GG_REGISTRY["curlj"]="curl -X POST -H JSON -d DATA URL ||| curl POST with JSON body"]
-_GG_REGISTRY["wgetm"]="wget --mirror URL ||| Mirror/download entire site"]
-_GG_REGISTRY["myip"]="curl ifconfig.me ||| Show public IP address"]
-_GG_REGISTRY["localip"]="ipconfig getifaddr en0 ||| Show local IP address"]
-_GG_REGISTRY["ping5"]="ping -c 5 HOST ||| Ping with 5 packets"]
-_GG_REGISTRY["digs"]="dig +short DOMAIN ||| Quick DNS lookup"]
-_GG_REGISTRY["digr"]="dig -x IP ||| Reverse DNS lookup"]
-_GG_REGISTRY["nsl"]="nslookup DOMAIN ||| nslookup shortcut"]
+_GG_REGISTRY["curlt"]="curl with timing breakdown ||| curl with DNS/connect/TLS timing"
+_GG_REGISTRY["curlh"]="curl -I URL ||| Show HTTP response headers"
+_GG_REGISTRY["curlj"]="curl -X POST -H JSON -d DATA URL ||| curl POST with JSON body"
+_GG_REGISTRY["wgetm"]="wget --mirror URL ||| Mirror/download entire site"
+_GG_REGISTRY["myip"]="curl ifconfig.me ||| Show public IP address"
+_GG_REGISTRY["localip"]="ipconfig getifaddr en0 ||| Show local IP address"
+_GG_REGISTRY["ping5"]="ping -c 5 HOST ||| Ping with 5 packets"
+_GG_REGISTRY["digs"]="dig +short DOMAIN ||| Quick DNS lookup"
+_GG_REGISTRY["digr"]="dig -x IP ||| Reverse DNS lookup"
+_GG_REGISTRY["nsl"]="nslookup DOMAIN ||| nslookup shortcut"
 _GG_REGISTRY["trce"]="traceroute HOST|||Traceroute to host"
-_GG_REGISTRY["nstat"]="netstat -tlnp ||| Show listening ports (netstat)"]
-_GG_REGISTRY["ssl"]="ss -tlnp ||| Show listening ports (ss)"]
-_GG_REGISTRY["conns"]="ss -s ||| Show connection summary"]
-_GG_REGISTRY["portcheck"]="nc -zv HOST PORT ||| Check if a port is open"]
-_GG_REGISTRY["speedtest"]="speedtest-cli via python ||| Internet speed test"]
-_GG_REGISTRY["ifls"]="ifconfig / ip addr show ||| List network interfaces"]
-_GG_REGISTRY["headers"]="curl -sI URL ||| Show HTTP headers for URL"]
-_GG_REGISTRY["dlf"]="curl -L -O --progress-bar URL ||| Download file with progress"]
+_GG_REGISTRY["nstat"]="netstat -tlnp ||| Show listening ports (netstat)"
+_GG_REGISTRY["ssl"]="ss -tlnp ||| Show listening ports (ss)"
+_GG_REGISTRY["conns"]="ss -s ||| Show connection summary"
+_GG_REGISTRY["portcheck"]="nc -zv HOST PORT ||| Check if a port is open"
+_GG_REGISTRY["speedtest"]="speedtest-cli via python ||| Internet speed test"
+_GG_REGISTRY["ifls"]="ifconfig / ip addr show ||| List network interfaces"
+_GG_REGISTRY["headers"]="curl -sI URL ||| Show HTTP headers for URL"
+_GG_REGISTRY["dlf"]="curl -L -O --progress-bar URL ||| Download file with progress"
 
 # 261. curl with timing
 alias curlt='curl -o /dev/null -s -w "DNS: %{time_namelookup}s | Connect: %{time_connect}s | TLS: %{time_appconnect}s | Total: %{time_total}s\n"'
@@ -63,7 +63,7 @@ alias digr='dig -x'
 alias nsl='nslookup'
 
 # 271. Traceroute
-alias trace='traceroute'
+alias trce='traceroute'
 
 # 272. netstat listening ports
 alias nstat='netstat -tlnp 2>/dev/null || netstat -an | grep LISTEN'

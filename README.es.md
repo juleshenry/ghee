@@ -154,7 +154,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | Iniciar servidor API Ollama en puerto 11434 |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | Chatear con modelo Ollama local vía curl |
 | `tokcount` | `python3 -c tiktoken count tokens` | Contar tokens en un string (requiere tiktoken) |
-| `openai` | `curl api.openai.com/v1/chat/completions` | Enviar un prompt a OpenAI API vía curl |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | Enviar un prompt a OpenAI API vía curl |
 
 ### Aws Cli
 
@@ -191,7 +191,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | Seguir logs del contenedor |
 | `dstop` | `docker stop \$(docker ps -aq)` | Detener todos los contenedores |
 | `dprune` | `docker system prune -af` | Limpiar todo (contenedores, imágenes, redes) |
-| `dc` | `docker compose` | Atajo Docker Compose |
+| `dcom` | `docker compose` | Atajo Docker Compose |
 | `dcu` | `docker compose up -d` | Compose up (desacoplado) |
 | `dcd` | `docker compose down` | Compose down |
 | `dcb` | `docker compose build` | Compose build |
@@ -286,7 +286,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | Listar archivos cambiados |
 | `gdstat` | `git diff --name-status` | Archivos cambiados con estado |
 | `gdlc` | `git diff HEAD^ HEAD` | Diff del último commit |
-| `gls` | `git ls-files` | Listar archivos rastreados |
+| `glst` | `git ls-files` | Listar archivos rastreados |
 | `glsu` | `git ls-files --others` | Listar archivos sin rastrear |
 | `gcontrib` | `git shortlog -sn` | Mostrar contribuidores |
 | `gfh` | `git log --follow -p -- FILE` | Mostrar historial completo de archivo |
@@ -319,7 +319,7 @@ ghee/
 | `gcf` | `git clean -f` | Limpiar archivos sin rastrear |
 | `gcfd` | `git clean -fd` | Limpiar archivos sin rastrear + directorios |
 | `gdis` | `git checkout -- FILE` | Descartar cambios en archivo |
-| `gcp` | `git cherry-pick HASH` | Seleccionar un commit |
+| `gcpy` | `git cherry-pick HASH` | Seleccionar un commit |
 | `gcpc` | `git cherry-pick --continue` | Continuar cherry-pick |
 | `gcpa` | `git cherry-pick --abort` | Abortar cherry-pick |
 | `grbi` | `git rebase -i HASH` | Rebase interactivo |
@@ -328,7 +328,7 @@ ghee/
 | `grbs` | `git rebase --skip` | Saltar paso de rebase |
 | `gt` | `git tag` | Mostrar etiquetas |
 | `gta` | `git tag -a TAG` | Crear etiqueta anotada |
-| `gpt` | `git push --tags` | Empujar todas las etiquetas |
+| `gpht` | `git push --tags` | Empujar todas las etiquetas |
 
 ### Github Cli
 
@@ -424,7 +424,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | Desplegar a producción Vercel |
 | `vdev` | `vercel dev` | Iniciar servidor de desarrollo local Vercel |
-| `venv` | `vercel env pull .env.local` | Extraer variables de entorno Vercel a local |
+| `venvpull` | `vercel env pull .env.local` | Extraer variables de entorno Vercel a local |
 | `hdeploy` | `git push heroku main` | Desplegar a Heroku vía git |
 | `hlogs` | `heroku logs --tail` | Seguir logs de app Heroku |
 | `hbash` | `heroku run bash` | Abrir shell en dyno Heroku |
@@ -497,5 +497,5 @@ ghee/
 
 | Alias | Ejecuta | Descripción |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | Prevenir que Mac entre en reposo |
+| `caf` | `caffeinate -d` | Prevenir que Mac entre en reposo |
 | `hidefiles` | `defaults write com.apple.finder ... [truncado]

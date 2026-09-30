@@ -6,17 +6,17 @@
 
 # Nginx
 
-_GG_REGISTRY["ngt"]="sudo nginx -t ||| Test nginx config"]
-_GG_REGISTRY["ngr"]="sudo nginx -s reload ||| Reload nginx"]
-_GG_REGISTRY["ngstart"]="sudo systemctl start nginx ||| Start nginx"]
-_GG_REGISTRY["ngstop"]="sudo systemctl stop nginx ||| Stop nginx"]
-_GG_REGISTRY["ngrestart"]="sudo systemctl restart nginx ||| Restart nginx"]
-_GG_REGISTRY["ngstatus"]="sudo systemctl status nginx ||| Nginx service status"]
-_GG_REGISTRY["ngedit"]="sudo vi /etc/nginx/nginx.conf ||| Edit nginx config"]
-_GG_REGISTRY["ngacc"]="sudo tail -f /var/log/nginx/access.log ||| Tail nginx access log"]
-_GG_REGISTRY["ngerr"]="sudo tail -f /var/log/nginx/error.log ||| Tail nginx error log"]
-_GG_REGISTRY["ngsites"]="ls /etc/nginx/sites-enabled/ ||| List nginx sites-enabled"]
-_GG_REGISTRY["ngconf"]="sudo nginx -T ||| Dump full nginx config"]
+_GG_REGISTRY["ngt"]="sudo nginx -t ||| Test nginx config"
+_GG_REGISTRY["ngr"]="sudo nginx -s reload ||| Reload nginx"
+_GG_REGISTRY["ngstart"]="sudo systemctl start nginx ||| Start nginx"
+_GG_REGISTRY["ngstop"]="sudo systemctl stop nginx ||| Stop nginx"
+_GG_REGISTRY["ngrestart"]="sudo systemctl restart nginx ||| Restart nginx"
+_GG_REGISTRY["ngstatus"]="sudo systemctl status nginx ||| Nginx service status"
+_GG_REGISTRY["ngedit"]="sudo vi /etc/nginx/nginx.conf ||| Edit nginx config"
+_GG_REGISTRY["ngacc"]="sudo tail -f /var/log/nginx/access.log ||| Tail nginx access log"
+_GG_REGISTRY["ngerr"]="sudo tail -f /var/log/nginx/error.log ||| Tail nginx error log"
+_GG_REGISTRY["ngsites"]="ls /etc/nginx/sites-enabled/ ||| List nginx sites-enabled"
+_GG_REGISTRY["ngconf"]="sudo nginx -T ||| Dump full nginx config"
 
 # 308. Test nginx config
 alias ngt='sudo nginx -t'

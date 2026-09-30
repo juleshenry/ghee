@@ -6,27 +6,27 @@
 
 # Java
 
-_GG_REGISTRY["jver"]="java -version ||| Show Java version"]
-_GG_REGISTRY["jcc"]="javac FILE.java ||| Compile Java source file"]
-_GG_REGISTRY["jrun"]="java CLASS ||| Run compiled Java class"]
+_GG_REGISTRY["jver"]="java -version ||| Show Java version"
+_GG_REGISTRY["jcc"]="javac FILE.java ||| Compile Java source file"
+_GG_REGISTRY["jrun"]="java CLASS ||| Run compiled Java class"
 
 # Maven
 
-_GG_REGISTRY["mci"]="mvn clean install ||| Maven clean install"]
-_GG_REGISTRY["mcp"]="mvn clean package ||| Maven clean package"]
-_GG_REGISTRY["mt"]="mvn test ||| Maven run tests"]
-_GG_REGISTRY["mcl"]="mvn clean ||| Maven clean"]
-_GG_REGISTRY["mdeps"]="mvn dependency:tree ||| Maven dependency tree"]
-_GG_REGISTRY["mspring"]="mvn spring-boot:run ||| Maven Spring Boot run"]
+_GG_REGISTRY["mci"]="mvn clean install ||| Maven clean install"
+_GG_REGISTRY["mcp"]="mvn clean package ||| Maven clean package"
+_GG_REGISTRY["mt"]="mvn test ||| Maven run tests"
+_GG_REGISTRY["mcl"]="mvn clean ||| Maven clean"
+_GG_REGISTRY["mdeps"]="mvn dependency:tree ||| Maven dependency tree"
+_GG_REGISTRY["mspring"]="mvn spring-boot:run ||| Maven Spring Boot run"
 
 # Gradle
 
-_GG_REGISTRY["grb"]="gradle build ||| Gradle build"]
-_GG_REGISTRY["grcl"]="gradle clean ||| Gradle clean"]
-_GG_REGISTRY["grt"]="gradle test ||| Gradle run tests"]
-_GG_REGISTRY["grrun"]="gradle run ||| Gradle run application"]
-_GG_REGISTRY["grdeps"]="gradle dependencies ||| Gradle dependency tree"]
-_GG_REGISTRY["grspring"]="gradle bootRun ||| Gradle Spring Boot run"]
+_GG_REGISTRY["grb"]="gradle build ||| Gradle build"
+_GG_REGISTRY["grcl"]="gradle clean ||| Gradle clean"
+_GG_REGISTRY["grt"]="gradle test ||| Gradle run tests"
+_GG_REGISTRY["grrun"]="gradle run ||| Gradle run application"
+_GG_REGISTRY["grdeps"]="gradle dependencies ||| Gradle dependency tree"
+_GG_REGISTRY["grspring"]="gradle bootRun ||| Gradle Spring Boot run"
 
 # Aliases
 

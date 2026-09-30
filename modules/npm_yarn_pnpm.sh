@@ -6,36 +6,36 @@
 
 # npm / yarn / pnpm
 
-_GG_REGISTRY["ni"]="npm install ||| npm install"]
-_GG_REGISTRY["nid"]="npm install --save-dev ||| npm install as dev dependency"]
-_GG_REGISTRY["nig"]="npm install -g ||| npm install globally"]
-_GG_REGISTRY["nrd"]="npm run dev ||| npm run dev server"]
-_GG_REGISTRY["nrb"]="npm run build ||| npm run build"]
-_GG_REGISTRY["nrs"]="npm run start ||| npm run start"]
-_GG_REGISTRY["nrt"]="npm run test ||| npm run test"]
-_GG_REGISTRY["nrl"]="npm run lint ||| npm run lint"]
-_GG_REGISTRY["nls"]="npm list --depth=0 ||| List top-level npm packages"]
-_GG_REGISTRY["nout"]="npm outdated ||| Show outdated npm packages"]
-_GG_REGISTRY["nup"]="npm update ||| Update npm packages"]
-_GG_REGISTRY["naf"]="npm audit fix ||| Fix npm audit vulnerabilities"]
-_GG_REGISTRY["ncc"]="npm cache clean --force ||| Clear npm cache"]
-_GG_REGISTRY["ninit"]="npm init -y ||| Initialize new npm project"]
-_GG_REGISTRY["nx"]="npx ||| npx shortcut"]
-_GG_REGISTRY["yi"]="yarn install ||| Yarn install dependencies"]
-_GG_REGISTRY["ya"]="yarn add PACKAGE ||| Yarn add package"]
-_GG_REGISTRY["yad"]="yarn add --dev PACKAGE ||| Yarn add dev dependency"]
-_GG_REGISTRY["yrd"]="yarn dev ||| Yarn dev server"]
-_GG_REGISTRY["yrb"]="yarn build ||| Yarn build"]
-_GG_REGISTRY["yrs"]="yarn start ||| Yarn start"]
-_GG_REGISTRY["yrt"]="yarn test ||| Yarn test"]
-_GG_REGISTRY["yga"]="yarn global add PACKAGE ||| Yarn global install"]
-_GG_REGISTRY["pni"]="pnpm install ||| pnpm install dependencies"]
-_GG_REGISTRY["pad"]="pnpm add PACKAGE ||| pnpm add package"]
-_GG_REGISTRY["padd"]="pnpm add -D PACKAGE ||| pnpm add dev dependency"]
-_GG_REGISTRY["prd"]="pnpm dev ||| pnpm dev server"]
-_GG_REGISTRY["prb"]="pnpm build ||| pnpm build"]
-_GG_REGISTRY["prs"]="pnpm start ||| pnpm start"]
-_GG_REGISTRY["prt"]="pnpm test ||| pnpm test"]
+_GG_REGISTRY["ni"]="npm install ||| npm install"
+_GG_REGISTRY["nid"]="npm install --save-dev ||| npm install as dev dependency"
+_GG_REGISTRY["nig"]="npm install -g ||| npm install globally"
+_GG_REGISTRY["nrd"]="npm run dev ||| npm run dev server"
+_GG_REGISTRY["nrb"]="npm run build ||| npm run build"
+_GG_REGISTRY["nrs"]="npm run start ||| npm run start"
+_GG_REGISTRY["nrt"]="npm run test ||| npm run test"
+_GG_REGISTRY["nrl"]="npm run lint ||| npm run lint"
+_GG_REGISTRY["nls"]="npm list --depth=0 ||| List top-level npm packages"
+_GG_REGISTRY["nout"]="npm outdated ||| Show outdated npm packages"
+_GG_REGISTRY["nup"]="npm update ||| Update npm packages"
+_GG_REGISTRY["naf"]="npm audit fix ||| Fix npm audit vulnerabilities"
+_GG_REGISTRY["ncc"]="npm cache clean --force ||| Clear npm cache"
+_GG_REGISTRY["ninit"]="npm init -y ||| Initialize new npm project"
+_GG_REGISTRY["nx"]="npx ||| npx shortcut"
+_GG_REGISTRY["yi"]="yarn install ||| Yarn install dependencies"
+_GG_REGISTRY["ya"]="yarn add PACKAGE ||| Yarn add package"
+_GG_REGISTRY["yad"]="yarn add --dev PACKAGE ||| Yarn add dev dependency"
+_GG_REGISTRY["yrd"]="yarn dev ||| Yarn dev server"
+_GG_REGISTRY["yrb"]="yarn build ||| Yarn build"
+_GG_REGISTRY["yrs"]="yarn start ||| Yarn start"
+_GG_REGISTRY["yrt"]="yarn test ||| Yarn test"
+_GG_REGISTRY["yga"]="yarn global add PACKAGE ||| Yarn global install"
+_GG_REGISTRY["pni"]="pnpm install ||| pnpm install dependencies"
+_GG_REGISTRY["pad"]="pnpm add PACKAGE ||| pnpm add package"
+_GG_REGISTRY["padd"]="pnpm add -D PACKAGE ||| pnpm add dev dependency"
+_GG_REGISTRY["prd"]="pnpm dev ||| pnpm dev server"
+_GG_REGISTRY["prb"]="pnpm build ||| pnpm build"
+_GG_REGISTRY["prs"]="pnpm start ||| pnpm start"
+_GG_REGISTRY["prt"]="pnpm test ||| pnpm test"
 
 # 196. npm install
 alias ni='npm install'

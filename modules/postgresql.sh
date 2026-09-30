@@ -6,21 +6,21 @@
 
 # PostgreSQL
 
-_GG_REGISTRY["pg"]="psql ||| PostgreSQL CLI"]
-_GG_REGISTRY["pgsu"]="sudo -u postgres psql ||| psql as postgres superuser"]
-_GG_REGISTRY["pgls"]="psql -l ||| List PostgreSQL databases"]
-_GG_REGISTRY["pgdb"]="psql -d DB [-U user] ||| Connect to a database"]
-_GG_REGISTRY["pgdump"]="pg_dump DATABASE ||| Dump a database"]
-_GG_REGISTRY["pgrestore"]="pg_restore FILE ||| Restore a database dump"]
-_GG_REGISTRY["pgcreate"]="createdb DATABASE ||| Create a database"]
-_GG_REGISTRY["pgdrop"]="dropdb DATABASE ||| Drop a database"]
-_GG_REGISTRY["pgroles"]="psql -c '\\du' ||| List PostgreSQL roles"]
-_GG_REGISTRY["pgconn"]="SELECT from pg_stat_activity ||| Show active connections"]
-_GG_REGISTRY["pgsize"]="SELECT relname, pg_size_pretty(...) ||| Show table sizes"]
-_GG_REGISTRY["pgrunning"]="SELECT from pg_stat_activity WHERE active ||| Show running queries"]
-_GG_REGISTRY["pgvacuum"]="VACUUM FULL ||| Run full vacuum"]
-_GG_REGISTRY["pgstatus"]="systemctl status postgresql ||| PostgreSQL service status"]
-_GG_REGISTRY["pgver"]="psql --version ||| PostgreSQL version"]
+_GG_REGISTRY["pg"]="psql ||| PostgreSQL CLI"
+_GG_REGISTRY["pgsu"]="sudo -u postgres psql ||| psql as postgres superuser"
+_GG_REGISTRY["pgls"]="psql -l ||| List PostgreSQL databases"
+_GG_REGISTRY["pgdb"]="psql -d DB [-U user] ||| Connect to a database"
+_GG_REGISTRY["pgdump"]="pg_dump DATABASE ||| Dump a database"
+_GG_REGISTRY["pgrestore"]="pg_restore FILE ||| Restore a database dump"
+_GG_REGISTRY["pgcreate"]="createdb DATABASE ||| Create a database"
+_GG_REGISTRY["pgdrop"]="dropdb DATABASE ||| Drop a database"
+_GG_REGISTRY["pgroles"]="psql -c '\\du' ||| List PostgreSQL roles"
+_GG_REGISTRY["pgconn"]="SELECT from pg_stat_activity ||| Show active connections"
+_GG_REGISTRY["pgsize"]="SELECT relname, pg_size_pretty(...) ||| Show table sizes"
+_GG_REGISTRY["pgrunning"]="SELECT from pg_stat_activity WHERE active ||| Show running queries"
+_GG_REGISTRY["pgvacuum"]="VACUUM FULL ||| Run full vacuum"
+_GG_REGISTRY["pgstatus"]="systemctl status postgresql ||| PostgreSQL service status"
+_GG_REGISTRY["pgver"]="psql --version ||| PostgreSQL version"
 
 # 293. psql shortcut
 alias pg='psql'

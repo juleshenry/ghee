@@ -6,18 +6,18 @@
 
 # Redis
 
-_GG_REGISTRY["rd"]="redis-cli ||| Redis CLI"]
-_GG_REGISTRY["rdping"]="redis-cli ping ||| Ping Redis server"]
-_GG_REGISTRY["rdinfo"]="redis-cli info ||| Redis server info"]
-_GG_REGISTRY["rdmon"]="redis-cli monitor ||| Monitor Redis commands in real-time"]
-_GG_REGISTRY["rdkeys"]="redis-cli keys '*' ||| List all Redis keys"]
-_GG_REGISTRY["rdget"]="redis-cli get KEY ||| Get a Redis key value"]
-_GG_REGISTRY["rdset"]="redis-cli set KEY VAL ||| Set a Redis key"]
-_GG_REGISTRY["rddel"]="redis-cli del KEY ||| Delete a Redis key"]
-_GG_REGISTRY["rdflush"]="redis-cli flushdb ||| Flush current Redis DB"]
-_GG_REGISTRY["rdflushall"]="redis-cli flushall ||| Flush all Redis DBs"]
-_GG_REGISTRY["rdsize"]="redis-cli dbsize ||| Show Redis DB key count"]
-_GG_REGISTRY["rdshut"]="redis-cli shutdown ||| Shutdown Redis server"]
+_GG_REGISTRY["rd"]="redis-cli ||| Redis CLI"
+_GG_REGISTRY["rdping"]="redis-cli ping ||| Ping Redis server"
+_GG_REGISTRY["rdinfo"]="redis-cli info ||| Redis server info"
+_GG_REGISTRY["rdmon"]="redis-cli monitor ||| Monitor Redis commands in real-time"
+_GG_REGISTRY["rdkeys"]="redis-cli keys '*' ||| List all Redis keys"
+_GG_REGISTRY["rdget"]="redis-cli get KEY ||| Get a Redis key value"
+_GG_REGISTRY["rdset"]="redis-cli set KEY VAL ||| Set a Redis key"
+_GG_REGISTRY["rddel"]="redis-cli del KEY ||| Delete a Redis key"
+_GG_REGISTRY["rdflush"]="redis-cli flushdb ||| Flush current Redis DB"
+_GG_REGISTRY["rdflushall"]="redis-cli flushall ||| Flush all Redis DBs"
+_GG_REGISTRY["rdsize"]="redis-cli dbsize ||| Show Redis DB key count"
+_GG_REGISTRY["rdshut"]="redis-cli shutdown ||| Shutdown Redis server"
 
 # 281. Redis CLI
 alias rd='redis-cli'

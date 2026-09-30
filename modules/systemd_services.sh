@@ -6,21 +6,21 @@
 
 # Systemd / Services
 
-_GG_REGISTRY["scs"]="sudo systemctl status SERVICE ||| Show service status"]
-_GG_REGISTRY["scstart"]="sudo systemctl start SERVICE ||| Start a service"]
-_GG_REGISTRY["scstop"]="sudo systemctl stop SERVICE ||| Stop a service"]
-_GG_REGISTRY["screstart"]="sudo systemctl restart SERVICE ||| Restart a service"]
-_GG_REGISTRY["scenable"]="sudo systemctl enable SERVICE ||| Enable service at boot"]
-_GG_REGISTRY["scdisable"]="sudo systemctl disable SERVICE ||| Disable service at boot"]
-_GG_REGISTRY["screload"]="sudo systemctl reload SERVICE ||| Reload service config"]
-_GG_REGISTRY["scdaemon"]="sudo systemctl daemon-reload ||| Reload systemd daemon"]
-_GG_REGISTRY["jctl"]="sudo journalctl -f ||| Follow system journal"]
-_GG_REGISTRY["jctlu"]="sudo journalctl -u SERVICE ||| Journal for a specific unit"]
-_GG_REGISTRY["jctlt"]="sudo journalctl --since today ||| Journal since today"]
-_GG_REGISTRY["scls"]="systemctl list-units --type=service ||| List active services"]
-_GG_REGISTRY["scfail"]="systemctl --failed ||| List failed services"]
-_GG_REGISTRY["scactive"]="systemctl is-active SERVICE ||| Check if service is active"]
-_GG_REGISTRY["scenabled"]="systemctl is-enabled SERVICE ||| Check if service is enabled"]
+_GG_REGISTRY["scs"]="sudo systemctl status SERVICE ||| Show service status"
+_GG_REGISTRY["scstart"]="sudo systemctl start SERVICE ||| Start a service"
+_GG_REGISTRY["scstop"]="sudo systemctl stop SERVICE ||| Stop a service"
+_GG_REGISTRY["screstart"]="sudo systemctl restart SERVICE ||| Restart a service"
+_GG_REGISTRY["scenable"]="sudo systemctl enable SERVICE ||| Enable service at boot"
+_GG_REGISTRY["scdisable"]="sudo systemctl disable SERVICE ||| Disable service at boot"
+_GG_REGISTRY["screload"]="sudo systemctl reload SERVICE ||| Reload service config"
+_GG_REGISTRY["scdaemon"]="sudo systemctl daemon-reload ||| Reload systemd daemon"
+_GG_REGISTRY["jctl"]="sudo journalctl -f ||| Follow system journal"
+_GG_REGISTRY["jctlu"]="sudo journalctl -u SERVICE ||| Journal for a specific unit"
+_GG_REGISTRY["jctlt"]="sudo journalctl --since today ||| Journal since today"
+_GG_REGISTRY["scls"]="systemctl list-units --type=service ||| List active services"
+_GG_REGISTRY["scfail"]="systemctl --failed ||| List failed services"
+_GG_REGISTRY["scactive"]="systemctl is-active SERVICE ||| Check if service is active"
+_GG_REGISTRY["scenabled"]="systemctl is-enabled SERVICE ||| Check if service is enabled"
 
 # 246. systemctl status
 alias scs='sudo systemctl status'

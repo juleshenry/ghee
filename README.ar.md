@@ -160,7 +160,7 @@ ghee/
 | `ollamaserv` | `ollama serve` | بدء خادم API Ollama على المنفذ 11434 |
 | `llmchat` | `curl localhost:11434/api/generate with JSON` | الدردشة مع نموذج Ollama محلي عبر curl |
 | `tokcount` | `python3 -c tiktoken count tokens` | عدد الرموز في سلسلة (يتطلب tiktoken) |
-| `openai` | `curl api.openai.com/v1/chat/completions` | إرسال مطالبة إلى OpenAI API عبر curl |
+| `openai_ask` | `curl api.openai.com/v1/chat/completions` | إرسال مطالبة إلى OpenAI API عبر curl |
 
 ### Docker
 
@@ -177,7 +177,7 @@ ghee/
 | `dl` | `docker logs -f CONTAINER` | متابعة سجلات الحاوية |
 | `dstop` | `docker stop \$(docker ps -aq)` | إيقاف جميع الحاويات |
 | `dprune` | `docker system prune -af` | تنظيف كل شيء (حاويات، صور، شبكات) |
-| `dc` | `docker compose` | اختصار Docker Compose |
+| `dcom` | `docker compose` | اختصار Docker Compose |
 | `dcu` | `docker compose up -d` | Compose تشغيل (خلفية) |
 | `dcd` | `docker compose down` | Compose إيقاف |
 | `dcb` | `docker compose build` | Compose بناء |
@@ -272,7 +272,7 @@ ghee/
 | `gdfiles` | `git diff --name-only` | سرد أسماء الملفات المتغيرة |
 | `gdstat` | `git diff --name-status` | ملفات متغيرة مع الحالة |
 | `gdlc` | `git diff HEAD^ HEAD` | فرق آخر تأكيد |
-| `gls` | `git ls-files` | سرد الملفات المتتبعة |
+| `glst` | `git ls-files` | سرد الملفات المتتبعة |
 | `glsu` | `git ls-files --others` | سرد الملفات غير المتتبعة |
 | `gcontrib` | `git shortlog -sn` | عرض المساهمين |
 | `gfh` | `git log --follow -p -- FILE` | عرض التاريخ الكامل للملف |
@@ -305,7 +305,7 @@ ghee/
 | `gcf` | `git clean -f` | تنظيف الملفات غير المتتبعة |
 | `gcfd` | `git clean -fd` | تنظيف الملفات غير المتتبعة + المجلدات |
 | `gdis` | `git checkout -- FILE` | تجاهل التغييرات في الملف |
-| `gcp` | `git cherry-pick HASH` | انتقاء تأكيد |
+| `gcpy` | `git cherry-pick HASH` | انتقاء تأكيد |
 | `gcpc` | `git cherry-pick --continue` | متابعة انتقاء |
 | `gcpa` | `git cherry-pick --abort` | إلغاء انتقاء |
 | `grbi` | `git rebase -i HASH` | rebase تفاعلي |
@@ -314,7 +314,7 @@ ghee/
 | `grbs` | `git rebase --skip` | تخطي خطوة rebase |
 | `gt` | `git tag` | عرض العلامات |
 | `gta` | `git tag -a TAG` | إنشاء علامة مشروحة |
-| `gpt` | `git push --tags` | دفع جميع العلامات |
+| `gpht` | `git push --tags` | دفع جميع العلامات |
 
 ### Github Cli
 
@@ -410,7 +410,7 @@ ghee/
 |-------|------|-------------|
 | `vdeploy` | `vercel --prod` | نشر Vercel إنتاج |
 | `vdev` | `vercel dev` | خادم تطوير Vercel محلي |
-| `venv` | `vercel env pull .env.local` | سحب متغيرات Vercel |
+| `venvpull` | `vercel env pull .env.local` | سحب متغيرات Vercel |
 | `hdeploy` | `git push heroku main` | نشر Heroku |
 | `hlogs` | `heroku logs --tail` | سجلات Heroku |
 | `hbash` | `heroku run bash` | shell على Heroku |
@@ -483,7 +483,7 @@ ghee/
 
 | الاسم المستعار | يشغّل | الوصف |
 |-------|------|-------------|
-| `caffeinate` | `caffeinate -d` | منع Mac من النوم |
+| `caf` | `caffeinate -d` | منع Mac من النوم |
 | `hidefiles` | `defaults write com.apple.finder ... [مقتطع]
 
 </div>

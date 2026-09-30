@@ -23,7 +23,7 @@ _GG_REGISTRY["flscale"]="fly scale count N ||| Scale Fly.io instance count"
 # Vercel
 alias vdeploy='vercel --prod'
 alias vdev='vercel dev'
-alias venv='vercel env pull .env.local'
+alias venvpull='vercel env pull .env.local'
 alias vls='vercel ls'
 alias vinspect='vercel inspect'
 

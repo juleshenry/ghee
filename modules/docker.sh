@@ -6,26 +6,26 @@
 
 # Docker
 
-_GG_REGISTRY["dps"]="docker ps ||| List running containers"]
-_GG_REGISTRY["dpsa"]="docker ps -a ||| List all containers"]
-_GG_REGISTRY["di"]="docker images ||| List images"]
-_GG_REGISTRY["drm"]="docker rm ||| Remove a container"]
-_GG_REGISTRY["drmi"]="docker rmi ||| Remove an image"]
-_GG_REGISTRY["drmf"]="docker rm -f \$(docker ps -aq) ||| Force remove all containers"]
-_GG_REGISTRY["drmia"]="docker rmi \$(docker images -q) ||| Remove all images"]
-_GG_REGISTRY["dex"]="docker exec -it CONTAINER bash ||| Exec into container"]
-_GG_REGISTRY["dl"]="docker logs -f CONTAINER ||| Follow container logs"]
-_GG_REGISTRY["dstop"]="docker stop \$(docker ps -aq) ||| Stop all containers"]
-_GG_REGISTRY["dprune"]="docker system prune -af ||| Prune everything (containers, images, networks)"]
-_GG_REGISTRY["dcom"]="docker compose ||| Docker Compose shortcut"]
-_GG_REGISTRY["dcu"]="docker compose up -d ||| Compose up (detached)"]
-_GG_REGISTRY["dcd"]="docker compose down ||| Compose down"]
-_GG_REGISTRY["dcb"]="docker compose build ||| Compose build"]
-_GG_REGISTRY["dcl"]="docker compose logs -f ||| Follow compose logs"]
-_GG_REGISTRY["dcr"]="docker compose restart ||| Restart compose services"]
-_GG_REGISTRY["dvls"]="docker volume ls ||| List volumes"]
-_GG_REGISTRY["dnls"]="docker network ls ||| List networks"]
-_GG_REGISTRY["dbuild"]="docker build -t NAME . ||| Build image from Dockerfile"]
+_GG_REGISTRY["dps"]="docker ps ||| List running containers"
+_GG_REGISTRY["dpsa"]="docker ps -a ||| List all containers"
+_GG_REGISTRY["di"]="docker images ||| List images"
+_GG_REGISTRY["drm"]="docker rm ||| Remove a container"
+_GG_REGISTRY["drmi"]="docker rmi ||| Remove an image"
+_GG_REGISTRY["drmf"]="docker rm -f \$(docker ps -aq) ||| Force remove all containers"
+_GG_REGISTRY["drmia"]="docker rmi \$(docker images -q) ||| Remove all images"
+_GG_REGISTRY["dex"]="docker exec -it CONTAINER bash ||| Exec into container"
+_GG_REGISTRY["dl"]="docker logs -f CONTAINER ||| Follow container logs"
+_GG_REGISTRY["dstop"]="docker stop \$(docker ps -aq) ||| Stop all containers"
+_GG_REGISTRY["dprune"]="docker system prune -af ||| Prune everything (containers, images, networks)"
+_GG_REGISTRY["dcom"]="docker compose ||| Docker Compose shortcut"
+_GG_REGISTRY["dcu"]="docker compose up -d ||| Compose up (detached)"
+_GG_REGISTRY["dcd"]="docker compose down ||| Compose down"
+_GG_REGISTRY["dcb"]="docker compose build ||| Compose build"
+_GG_REGISTRY["dcl"]="docker compose logs -f ||| Follow compose logs"
+_GG_REGISTRY["dcr"]="docker compose restart ||| Restart compose services"
+_GG_REGISTRY["dvls"]="docker volume ls ||| List volumes"
+_GG_REGISTRY["dnls"]="docker network ls ||| List networks"
+_GG_REGISTRY["dbuild"]="docker build -t NAME . ||| Build image from Dockerfile"
 
 # 102. List running containers
 alias dps='docker ps'
@@ -67,7 +67,7 @@ alias dstop='docker stop $(docker ps -aq) 2>/dev/null'
 alias dprune='docker system prune -af'
 
 # 113. Docker Compose shortcut
-alias dc='docker compose'
+alias dcom='docker compose'
 
 # 114. Compose up (detached)
 alias dcu='docker compose up -d'

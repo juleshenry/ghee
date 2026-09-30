@@ -6,20 +6,20 @@
 
 # Misc CLI Tools
 
-_GG_REGISTRY["duh"]="du -sh * | sort -rh ||| Disk usage summary (sorted)"]
-_GG_REGISTRY["dfh"]="df -h ||| Disk free (human-readable)"]
-_GG_REGISTRY["fmem"]="free -h ||| Free memory"]
-_GG_REGISTRY["cpuinfo"]="lscpu ||| CPU info"]
-_GG_REGISTRY["w2"]="watch -n 2 CMD ||| Watch a command every 2 seconds"]
-_GG_REGISTRY["lsofp"]="lsof -c PROCESS ||| List open files by process"]
-_GG_REGISTRY["killname"]="pkill -f NAME ||| Kill process by name"]
-_GG_REGISTRY["hist"]="history | tail -50 ||| Last 50 history entries"]
-_GG_REGISTRY["cl"]="clear ||| Clear terminal"]
-_GG_REGISTRY["reload"]="exec \$SHELL -l ||| Reload shell config"]
-_GG_REGISTRY["erc"]="\${EDITOR:-vi} ~/.<shell>rc ||| Edit shell RC file"]
-_GG_REGISTRY["path"]="echo \$PATH | tr : newline ||| Show PATH (one per line)"]
-_GG_REGISTRY["cx"]="chmod +x FILE ||| Make file executable"]
-_GG_REGISTRY["isodate"]="date -u +%Y-%m-%dT%H:%M:%SZ ||| Print ISO 8601 timestamp"]
+_GG_REGISTRY["duh"]="du -sh * | sort -rh ||| Disk usage summary (sorted)"
+_GG_REGISTRY["dfh"]="df -h ||| Disk free (human-readable)"
+_GG_REGISTRY["fmem"]="free -h ||| Free memory"
+_GG_REGISTRY["cpuinfo"]="lscpu ||| CPU info"
+_GG_REGISTRY["w2"]="watch -n 2 CMD ||| Watch a command every 2 seconds"
+_GG_REGISTRY["lsofp"]="lsof -c PROCESS ||| List open files by process"
+_GG_REGISTRY["killname"]="pkill -f NAME ||| Kill process by name"
+_GG_REGISTRY["hist"]="history | tail -50 ||| Last 50 history entries"
+_GG_REGISTRY["cl"]="clear ||| Clear terminal"
+_GG_REGISTRY["reload"]="exec \$SHELL -l ||| Reload shell config"
+_GG_REGISTRY["erc"]="\${EDITOR:-vi} ~/.<shell>rc ||| Edit shell RC file"
+_GG_REGISTRY["path"]="echo \$PATH | tr : newline ||| Show PATH (one per line)"
+_GG_REGISTRY["cx"]="chmod +x FILE ||| Make file executable"
+_GG_REGISTRY["isodate"]="date -u +%Y-%m-%dT%H:%M:%SZ ||| Print ISO 8601 timestamp"
 _GG_REGISTRY["sh256"]="shasum -a 256 FILE ||| SHA256 hash of file"
 _GG_REGISTRY["md5s"]="md5 FILE ||| MD5 hash of file"
 
@@ -78,8 +78,10 @@ alias b64e='base64'
 alias b64d='base64 --decode'
 
 # 339. SHA256 hash of file
-alias sha256='shasum -a 256'
+alias sh256='shasum -a 256'
 
 # 340. MD5 hash of file
-alias md5sum='md5 2>/dev/null || md5sum'
+md5s() {
+    if command -v md5 >/dev/null 2>&1; then md5 "$@"; else md5sum "$@"; fi
+}
 

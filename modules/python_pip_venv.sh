@@ -6,26 +6,26 @@
 
 # Python / pip / venv
 
-_GG_REGISTRY["py"]="python3 ||| Python3 shortcut"]
-_GG_REGISTRY["py2"]="python2 ||| Python2 shortcut"]
-_GG_REGISTRY["pip3i"]="pip3 install PACKAGE ||| pip install a package"]
-_GG_REGISTRY["pipr"]="pip3 install -r requirements.txt ||| pip install from requirements"]
-_GG_REGISTRY["pipf"]="pip3 freeze > requirements.txt ||| Freeze pip deps to requirements"]
-_GG_REGISTRY["pipl"]="pip3 list ||| List installed pip packages"]
-_GG_REGISTRY["pipo"]="pip3 list --outdated ||| List outdated pip packages"]
-_GG_REGISTRY["pipu"]="pip3 install --upgrade PACKAGE ||| Upgrade a pip package"]
-_GG_REGISTRY["pipun"]="pip3 uninstall PACKAGE ||| Uninstall a pip package"]
-_GG_REGISTRY["venv"]="python3 -m venv venv ||| Create a virtual environment"]
-_GG_REGISTRY["va"]="source venv/bin/activate ||| Activate venv"]
-_GG_REGISTRY["vd"]="deactivate ||| Deactivate venv"]
-_GG_REGISTRY["pt"]="pytest ||| Run pytest"]
-_GG_REGISTRY["ptv"]="pytest -v ||| Run pytest verbose"]
-_GG_REGISTRY["ptc"]="pytest --cov ||| Run pytest with coverage"]
-_GG_REGISTRY["pym"]="python3 -m MODULE ||| Run Python module"]
-_GG_REGISTRY["ipy"]="ipython ||| Launch IPython"]
-_GG_REGISTRY["jnb"]="jupyter notebook ||| Launch Jupyter Notebook"]
-_GG_REGISTRY["jlab"]="jupyter lab ||| Launch Jupyter Lab"]
-_GG_REGISTRY["pide"]="pip3 install -e . ||| pip install in editable mode"]
+_GG_REGISTRY["py"]="python3 ||| Python3 shortcut"
+_GG_REGISTRY["py2"]="python2 ||| Python2 shortcut"
+_GG_REGISTRY["pip3i"]="pip3 install PACKAGE ||| pip install a package"
+_GG_REGISTRY["pipr"]="pip3 install -r requirements.txt ||| pip install from requirements"
+_GG_REGISTRY["pipf"]="pip3 freeze > requirements.txt ||| Freeze pip deps to requirements"
+_GG_REGISTRY["pipl"]="pip3 list ||| List installed pip packages"
+_GG_REGISTRY["pipo"]="pip3 list --outdated ||| List outdated pip packages"
+_GG_REGISTRY["pipu"]="pip3 install --upgrade PACKAGE ||| Upgrade a pip package"
+_GG_REGISTRY["pipun"]="pip3 uninstall PACKAGE ||| Uninstall a pip package"
+_GG_REGISTRY["venv"]="python3 -m venv venv ||| Create a virtual environment"
+_GG_REGISTRY["va"]="source venv/bin/activate ||| Activate venv"
+_GG_REGISTRY["vd"]="deactivate ||| Deactivate venv"
+_GG_REGISTRY["pt"]="pytest ||| Run pytest"
+_GG_REGISTRY["ptv"]="pytest -v ||| Run pytest verbose"
+_GG_REGISTRY["ptc"]="pytest --cov ||| Run pytest with coverage"
+_GG_REGISTRY["pym"]="python3 -m MODULE ||| Run Python module"
+_GG_REGISTRY["ipy"]="ipython ||| Launch IPython"
+_GG_REGISTRY["jnb"]="jupyter notebook ||| Launch Jupyter Notebook"
+_GG_REGISTRY["jlab"]="jupyter lab ||| Launch Jupyter Lab"
+_GG_REGISTRY["pide"]="pip3 install -e . ||| pip install in editable mode"
 
 # 226. Python3 shortcut
 alias py='python3'

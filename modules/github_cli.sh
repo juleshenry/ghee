@@ -50,3 +50,5 @@ alias ghrun='gh run list'
 alias ghrw='gh run watch'
 alias ghclone='gh repo clone'
 alias ghfork='gh repo fork --clone'
+
+alias ghssh='gh auth refresh -h github.com -s admin:public_key'

@@ -12,7 +12,7 @@ _GG_REGISTRY["ollpull"]="ollama pull MODEL ||| Download an Ollama model"
 _GG_REGISTRY["ollamaserv"]="ollama serve ||| Start Ollama API server on port 11434"
 _GG_REGISTRY["llmchat"]="curl localhost:11434/api/generate with JSON ||| Chat with local Ollama model via curl"
 _GG_REGISTRY["tokcount"]="python3 -c tiktoken count tokens ||| Count tokens in a string (requires tiktoken)"
-_GG_REGISTRY["openai"]="curl api.openai.com/v1/chat/completions ||| Send a prompt to OpenAI API via curl"
+_GG_REGISTRY["openai_ask"]="curl api.openai.com/v1/chat/completions ||| Send a prompt to OpenAI API via curl"
 
 # 400. Run LLM model (Ollama)
 alias ollmls='ollama list'
@@ -73,3 +73,5 @@ alias ollmcp='ollama cp'
 alias ollmps='ollama ps'
 alias ollmcr='ollama create'
 alias ollmshow='ollama show'
+
+alias ollrun='ollama_run'
