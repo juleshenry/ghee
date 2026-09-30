@@ -121,8 +121,10 @@ if [ -n "$ZSH_VERSION" ]; then
         subcmds=('-a:Add a custom shortcut' '-rm:Remove a custom shortcut' 'ls:List custom shortcuts' '-o:Ask Ollama AI' '-q:Ask Ollama AI' '--sync:Sync from Gist' 'info:Show module aliases' 'update:Self-update ghee' '--help:Show help')
         _describe 'G commands' subcmds
     }
-    compdef _ghee_completions G
-    compdef _ghee_completions g
+    if (( $+functions[compdef] )); then
+        compdef _ghee_completions G
+        compdef _ghee_completions g
+    fi
 elif [ -n "$BASH_VERSION" ]; then
     _ghee_completions() {
         local cur="${COMP_WORDS[COMP_CWORD]}"

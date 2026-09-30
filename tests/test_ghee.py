@@ -70,6 +70,7 @@ class TestOllamaIntegration(TestCase):
     ):
         mock_get_model.return_value = "llama3.2"
         mock_ask.return_value = "echo 'hello world'"
+        mock_os_system.return_value = 0
         # Simulate pressing Enter
         mock_getch.side_effect = ["\r"]
 
